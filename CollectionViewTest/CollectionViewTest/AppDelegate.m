@@ -17,7 +17,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[LFCollectionViewController alloc] initWithNibName:@"LFCollectionViewController_iPhone" bundle:nil];
+        //self.viewController = [[LFCollectionViewController alloc] initWithNibName:@"LFCollectionViewController_iPhone" bundle:nil];
+        self.viewController = [[LFCollectionViewController alloc] initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
+
     } else {
         self.viewController = [[LFCollectionViewController alloc] initWithNibName:@"LFCollectionViewController_iPad" bundle:nil];
     }

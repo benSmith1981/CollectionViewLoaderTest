@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ParsingCompleteProtocol.h"
-@interface LFCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate,ParsingCompleteProtocol>
+#import "ExpandedViewProtocol.h"
+@interface LFCollectionViewController : UICollectionViewController <UIGestureRecognizerDelegate, UICollectionViewDataSource, UICollectionViewDelegate,ParsingCompleteProtocol,ExpandedViewProtocol>
 
 @end

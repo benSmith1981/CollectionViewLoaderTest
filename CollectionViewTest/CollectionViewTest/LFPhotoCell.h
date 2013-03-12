@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExpandedViewProtocol.h"
+@class ExpandedViewProtocol;
 
-@interface LFPhotoCell : UICollectionViewCell
+@interface LFPhotoCell : UICollectionViewCell <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong, readonly) UIImageView *imageView;
++ (void)setExpandedViewProtocol:(id<ExpandedViewProtocol>)delegate;
 
 @end
