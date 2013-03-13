@@ -12,7 +12,7 @@
 @protocol ParsingCompleteProtocol;
 /** Created static instance so that this class can be statically called*/
 
-@interface MGAFNetworkingInterface : AFImageRequestOperation
+@interface LFAFNetworkingInterface : AFImageRequestOperation
 
 /** Sends off a request to Af networking to get and parse the JSON data from image manifest, which is sent back through a delegate call
  */
@@ -30,7 +30,7 @@
 + (UIImage*) getSavedImageWithName:(NSString*) imageName;
 
 /**This method encapsulates a request by the table view for an image kicking off Afnetworking downloader and storing image for later retrieval in the documents directory
- @param MGTableViewCell Cell we want to populate an image
+ @param LFPhotoCell Cell we want to populate an image
  @param int Row number of the cell, so we know what image to populate
  @param NSArray Array of image URLS paths on the remote server that we retrieved from the JSON image manifest
  */

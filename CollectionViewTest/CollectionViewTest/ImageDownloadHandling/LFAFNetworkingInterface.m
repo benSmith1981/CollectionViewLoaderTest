@@ -8,11 +8,11 @@
 #import "AFJSONRequestOperation.h"
 #import "LFConstants.h"
 #import "AFNetworking.h"
-#import "MGAFNetworkingInterface.h"
+#import "LFAFNetworkingInterface.h"
 
 static id<ParsingCompleteProtocol>parsingDelegate;
 
-@interface MGAFNetworkingInterface ()
+@interface LFAFNetworkingInterface ()
 
 /**Returns the image directory path that we store our images in
  @return NSString The image directory path for images
@@ -26,7 +26,7 @@ static id<ParsingCompleteProtocol>parsingDelegate;
 + (void)writeImages:(NSString*)imageStringURL DataToFile:(UIImage*)image;
 @end
 
-@implementation MGAFNetworkingInterface
+@implementation LFAFNetworkingInterface
 
 + (void)jsonRequestInitialiser
 {
@@ -53,10 +53,10 @@ static id<ParsingCompleteProtocol>parsingDelegate;
 {
     NSURL *url = [[NSURL alloc]initWithString:[imageURLs objectAtIndex:row]];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
-    [cell.imageView setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"loading.png"]
+    [cell.cellImageView setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"loading.png"]
                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
      {
-         cell.imageView.image = image;
+         cell.cellImageView.image = image;
          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
              [self writeImages:[imageURLs objectAtIndex:row] DataToFile:image];
          });

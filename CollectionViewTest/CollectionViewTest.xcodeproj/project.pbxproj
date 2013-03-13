@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F28019F16F13AF8005EEDEB /* LFExpandedCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F28019E16F13AF7005EEDEB /* LFExpandedCellViewController.m */; };
 		0F33563916EF5DF100F8FB90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563816EF5DF100F8FB90 /* UIKit.framework */; };
 		0F33563B16EF5DF100F8FB90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563A16EF5DF100F8FB90 /* Foundation.framework */; };
 		0F33563D16EF5DF100F8FB90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563C16EF5DF100F8FB90 /* CoreGraphics.framework */; };
@@ -18,7 +19,6 @@
 		0F33564F16EF5DF300F8FB90 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F33564E16EF5DF300F8FB90 /* Default-568h@2x.png */; };
 		0F33565216EF5DF400F8FB90 /* LFCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33565116EF5DF400F8FB90 /* LFCollectionViewController.m */; };
 		0F33565516EF5DF400F8FB90 /* LFCollectionViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F33565316EF5DF400F8FB90 /* LFCollectionViewController_iPhone.xib */; };
-		0F33565816EF5DF500F8FB90 /* LFCollectionViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F33565616EF5DF500F8FB90 /* LFCollectionViewController_iPad.xib */; };
 		0F33566916EF6B6100F8FB90 /* LFPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33566816EF6B6100F8FB90 /* LFPhotoCell.m */; };
 		0F33568116EF77E700F8FB90 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33566D16EF77E700F8FB90 /* AFHTTPClient.m */; };
 		0F33568216EF77E700F8FB90 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33566F16EF77E700F8FB90 /* AFHTTPRequestOperation.m */; };
@@ -29,13 +29,13 @@
 		0F33568716EF77E700F8FB90 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33567A16EF77E700F8FB90 /* AFURLConnectionOperation.m */; };
 		0F33568816EF77E700F8FB90 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33567C16EF77E700F8FB90 /* AFXMLRequestOperation.m */; };
 		0F33568916EF77E700F8FB90 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33567E16EF77E700F8FB90 /* UIImageView+AFNetworking.m */; };
-		0F33568A16EF77E700F8FB90 /* MGAFNetworkingInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33568016EF77E700F8FB90 /* MGAFNetworkingInterface.m */; };
-		0F3356BB16EFAC9300F8FB90 /* LFExpandedCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3356B916EFAC9300F8FB90 /* LFExpandedCellViewController.m */; };
-		0F3356BC16EFAC9300F8FB90 /* LFExpandedCellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F3356BA16EFAC9300F8FB90 /* LFExpandedCellViewController.xib */; };
+		0F33568A16EF77E700F8FB90 /* LFAFNetworkingInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33568016EF77E700F8FB90 /* LFAFNetworkingInterface.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0F28019316F0809B005EEDEB /* CloseExpandedViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloseExpandedViewProtocol.h; sourceTree = "<group>"; };
+		0F28019D16F13AF7005EEDEB /* LFExpandedCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFExpandedCellViewController.h; sourceTree = "<group>"; };
+		0F28019E16F13AF7005EEDEB /* LFExpandedCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFExpandedCellViewController.m; sourceTree = "<group>"; };
 		0F33563516EF5DF100F8FB90 /* CollectionViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F33563816EF5DF100F8FB90 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0F33563A16EF5DF100F8FB90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -52,7 +52,6 @@
 		0F33565016EF5DF400F8FB90 /* LFCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LFCollectionViewController.h; sourceTree = "<group>"; };
 		0F33565116EF5DF400F8FB90 /* LFCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LFCollectionViewController.m; sourceTree = "<group>"; };
 		0F33565416EF5DF400F8FB90 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LFCollectionViewController_iPhone.xib; sourceTree = "<group>"; };
-		0F33565716EF5DF500F8FB90 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LFCollectionViewController_iPad.xib; sourceTree = "<group>"; };
 		0F33566716EF6B6100F8FB90 /* LFPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFPhotoCell.h; sourceTree = "<group>"; };
 		0F33566816EF6B6100F8FB90 /* LFPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFPhotoCell.m; sourceTree = "<group>"; };
 		0F33566C16EF77E700F8FB90 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -74,12 +73,9 @@
 		0F33567C16EF77E700F8FB90 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		0F33567D16EF77E700F8FB90 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		0F33567E16EF77E700F8FB90 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		0F33567F16EF77E700F8FB90 /* MGAFNetworkingInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGAFNetworkingInterface.h; sourceTree = "<group>"; };
-		0F33568016EF77E700F8FB90 /* MGAFNetworkingInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGAFNetworkingInterface.m; sourceTree = "<group>"; };
+		0F33567F16EF77E700F8FB90 /* LFAFNetworkingInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFAFNetworkingInterface.h; sourceTree = "<group>"; };
+		0F33568016EF77E700F8FB90 /* LFAFNetworkingInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFAFNetworkingInterface.m; sourceTree = "<group>"; };
 		0F33568B16EF78E900F8FB90 /* ParsingCompleteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsingCompleteProtocol.h; sourceTree = "<group>"; };
-		0F3356B816EFAC9300F8FB90 /* LFExpandedCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFExpandedCellViewController.h; sourceTree = "<group>"; };
-		0F3356B916EFAC9300F8FB90 /* LFExpandedCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFExpandedCellViewController.m; sourceTree = "<group>"; };
-		0F3356BA16EFAC9300F8FB90 /* LFExpandedCellViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFExpandedCellViewController.xib; sourceTree = "<group>"; };
 		0F3356BE16EFE75200F8FB90 /* LFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFConstants.h; sourceTree = "<group>"; };
 		0F3356C116EFE9E900F8FB90 /* ExpandedViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpandedViewProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F28019916F138D3005EEDEB /* Expanded View */ = {
+			isa = PBXGroup;
+			children = (
+				0F28019D16F13AF7005EEDEB /* LFExpandedCellViewController.h */,
+				0F28019E16F13AF7005EEDEB /* LFExpandedCellViewController.m */,
+			);
+			name = "Expanded View";
+			sourceTree = "<group>";
+		};
 		0F33562C16EF5DF100F8FB90 = {
 			isa = PBXGroup;
 			children = (
@@ -128,15 +133,14 @@
 		0F33563E16EF5DF100F8FB90 /* CollectionViewTest */ = {
 			isa = PBXGroup;
 			children = (
-				0F3356B716EFAC4A00F8FB90 /* ExpandedView */,
+				0F28019916F138D3005EEDEB /* Expanded View */,
 				0F33566A16EF77E700F8FB90 /* ImageDownloadHandling */,
 				0F33566616EF6B4700F8FB90 /* Cell View */,
 				0F33565E16EF66AC00F8FB90 /* Collection ViewController */,
 				0F33564716EF5DF300F8FB90 /* AppDelegate.h */,
 				0F33564816EF5DF300F8FB90 /* AppDelegate.m */,
-				0F33565616EF5DF500F8FB90 /* LFCollectionViewController_iPad.xib */,
-				0F33563F16EF5DF200F8FB90 /* Supporting Files */,
 				0F3356BE16EFE75200F8FB90 /* LFConstants.h */,
+				0F33563F16EF5DF200F8FB90 /* Supporting Files */,
 			);
 			path = CollectionViewTest;
 			sourceTree = "<group>";
@@ -181,8 +185,8 @@
 			children = (
 				0F33568B16EF78E900F8FB90 /* ParsingCompleteProtocol.h */,
 				0F33566B16EF77E700F8FB90 /* AFNetworking */,
-				0F33567F16EF77E700F8FB90 /* MGAFNetworkingInterface.h */,
-				0F33568016EF77E700F8FB90 /* MGAFNetworkingInterface.m */,
+				0F33567F16EF77E700F8FB90 /* LFAFNetworkingInterface.h */,
+				0F33568016EF77E700F8FB90 /* LFAFNetworkingInterface.m */,
 			);
 			path = ImageDownloadHandling;
 			sourceTree = "<group>";
@@ -211,16 +215,6 @@
 				0F33567E16EF77E700F8FB90 /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
-			sourceTree = "<group>";
-		};
-		0F3356B716EFAC4A00F8FB90 /* ExpandedView */ = {
-			isa = PBXGroup;
-			children = (
-				0F3356B816EFAC9300F8FB90 /* LFExpandedCellViewController.h */,
-				0F3356B916EFAC9300F8FB90 /* LFExpandedCellViewController.m */,
-				0F3356BA16EFAC9300F8FB90 /* LFExpandedCellViewController.xib */,
-			);
-			name = ExpandedView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,8 +273,6 @@
 				0F33564D16EF5DF300F8FB90 /* Default@2x.png in Resources */,
 				0F33564F16EF5DF300F8FB90 /* Default-568h@2x.png in Resources */,
 				0F33565516EF5DF400F8FB90 /* LFCollectionViewController_iPhone.xib in Resources */,
-				0F33565816EF5DF500F8FB90 /* LFCollectionViewController_iPad.xib in Resources */,
-				0F3356BC16EFAC9300F8FB90 /* LFExpandedCellViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,8 +296,8 @@
 				0F33568716EF77E700F8FB90 /* AFURLConnectionOperation.m in Sources */,
 				0F33568816EF77E700F8FB90 /* AFXMLRequestOperation.m in Sources */,
 				0F33568916EF77E700F8FB90 /* UIImageView+AFNetworking.m in Sources */,
-				0F33568A16EF77E700F8FB90 /* MGAFNetworkingInterface.m in Sources */,
-				0F3356BB16EFAC9300F8FB90 /* LFExpandedCellViewController.m in Sources */,
+				0F33568A16EF77E700F8FB90 /* LFAFNetworkingInterface.m in Sources */,
+				0F28019F16F13AF8005EEDEB /* LFExpandedCellViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,14 +318,6 @@
 				0F33565416EF5DF400F8FB90 /* en */,
 			);
 			name = LFCollectionViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		0F33565616EF5DF500F8FB90 /* LFCollectionViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0F33565716EF5DF500F8FB90 /* en */,
-			);
-			name = LFCollectionViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

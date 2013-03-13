@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ParsingCompleteProtocol.h"
 #import "ExpandedViewProtocol.h"
-#import "LFExpandedCellViewController.h"
+#import "CloseExpandedViewProtocol.h"
 
-@interface LFCollectionViewController : UICollectionViewController <UIGestureRecognizerDelegate, UICollectionViewDataSource, UICollectionViewDelegate,ParsingCompleteProtocol,CloseExpandedViewProtocol,ExpandedViewProtocol>
-@property (nonatomic,strong) LFExpandedCellViewController *lfExpanded;
+@interface LFCollectionViewController : UICollectionViewController <UIGestureRecognizerDelegate,UICollectionViewDataSource, UICollectionViewDelegate,ParsingCompleteProtocol,CloseExpandedViewProtocol,ExpandedViewProtocol>
 @end

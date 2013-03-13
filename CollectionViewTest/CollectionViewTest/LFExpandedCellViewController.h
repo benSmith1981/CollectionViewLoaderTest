@@ -8,19 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "CloseExpandedViewProtocol.h"
-
+#import "LFPhotoCell.h"
+#import "LFCollectionViewController.h"
 @class CloseExpandedViewProtocol;
 
-@interface LFExpandedCellViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface LFExpandedCellViewController : UIViewController
 
-/** This is the scroll that image is displayed in if it is too big for view so we can see all of it*/
-@property (nonatomic,strong) IBOutlet UIScrollView *imageScrollView;
-
-/** This is the full size image that is displayed on the detail view*/
+/** This is the full size image that is displayed on in our expanded view*/
 @property (nonatomic,strong) UIImageView *fullsizeImage;
 
-@property (nonatomic,strong)id<CloseExpandedViewProtocol>closeViewDelegate;
+/** This is the cell that the photo belongs to, used to get cell number */
+@property (nonatomic,strong) LFPhotoCell *currentPhotoCell;
 
-- (IBAction)closeView:(id)sender;
+/** This is the array of image URLS so we can swipe between the images */
+@property (nonatomic,strong) NSArray *imageURLS;
+
+/** This is the delegate CloseExpandedViewProtocol which is used to call back to the parent view controller and close this view*/
+@property (nonatomic,strong)id<CloseExpandedViewProtocol>closeViewDelegate;
 
 @end
