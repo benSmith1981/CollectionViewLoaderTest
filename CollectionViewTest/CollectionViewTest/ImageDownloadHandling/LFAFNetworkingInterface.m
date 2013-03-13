@@ -53,19 +53,22 @@ static id<ParsingCompleteProtocol>parsingDelegate;
 {
     NSURL *url = [[NSURL alloc]initWithString:[imageURLs objectAtIndex:row]];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
+    //put in our NSURL request to the AFnetworking method to retrieve the image, but use a placeholder until it has
     [cell.cellImageView setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"loading.png"]
                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-     {
-         cell.cellImageView.image = image;
-         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-             [self writeImages:[imageURLs objectAtIndex:row] DataToFile:image];
-         });
-         NSLog(@"%@",[[imageURLs objectAtIndex:row] lastPathComponent]);
-     }
-                                 failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error)
-     {
-         NSLog(@"%@",error.description);
-     }];
+                                 {
+                                     //Upon successful retrieval set the collection view image to that retrieved
+                                     cell.cellImageView.image = image;
+                                     //Then on a background thread write this image to our docs directory for permanent storage
+                                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                                         [self writeImages:[imageURLs objectAtIndex:row] DataToFile:image];
+                                     });
+                                 }
+                                failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error)
+                                 {
+                                     //if retrieval fails print error description
+                                     NSLog(@"%@",error.description);
+                                 }];
 }
 
 + (void)setImageManifestProtocol:(id<ParsingCompleteProtocol>)delegate
@@ -91,6 +94,7 @@ static id<ParsingCompleteProtocol>parsingDelegate;
     NSString *documentsDirectory = nil;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     documentsDirectory = [paths objectAtIndex:0];
+    //Concatenate a path string with our documentsdirectory path and return this to caller
     NSString *pathString = [NSString stringWithFormat:@"%@/",documentsDirectory];
     return pathString;
 }
@@ -98,22 +102,28 @@ static id<ParsingCompleteProtocol>parsingDelegate;
 + (BOOL)doesImageExist:(NSString*)imageName
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
+    //Get full path with our image name on the end
     NSString *str = [NSString stringWithFormat:@"%@%@",[self getOurImageDirectory],imageName];
+    //Using the NSFileManager method check if a file exists at this path and return YES or NO to the caller in writeImages and getSavedImageWithName method
     return [fileManager fileExistsAtPath:str];
 }
 
 + (UIImage*) getSavedImageWithName:(NSString*) imageName
 {
     UIImage* image = nil;
+    //if image exists
     if([self doesImageExist:imageName])
     {
+        //make up full path
         NSString *fullImagePath = [NSString stringWithFormat:@"%@%@",[self getOurImageDirectory],imageName];
+        //intialise image object with the contents of this image path, basically the image stored in our doc directory
         image = [[UIImage alloc] initWithContentsOfFile:fullImagePath];
     }
-    else {
+    else
+    {
+        //If there is no image return no image jpg
         image = [UIImage imageNamed:@"no_image.jpg"];
     }
-    
     return image;
 }
 
