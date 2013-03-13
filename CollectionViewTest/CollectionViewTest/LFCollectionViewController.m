@@ -11,11 +11,10 @@
 #import "ParsingCompleteProtocol.h"
 #import "AFNetworking.h"
 #import "MGAFNetworkingInterface.h"
-#import "LFExpandedCellViewController.h"
 
 static NSString * const PhotoCellIdentifier = @"PhotoCell";
 
-@interface LFCollectionViewController ()
+@interface LFCollectionViewController ()<ExpandedViewProtocol>
 @property (nonatomic) NSInteger cellToExpand;
 @property (nonatomic,strong) NSArray* imageURLs;
 @property (nonatomic,strong) LFPhotoCell *photoCell;
@@ -25,6 +24,8 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 @synthesize imageURLs = _imageURLs;
 @synthesize photoCell = _photoCell;
 @synthesize cellToExpand = _cellToExpand;
+@synthesize lfExpanded = _lfExpanded;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -136,9 +137,13 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 //    }];
 }
 
--(void)expandTheImageView
+#pragma mark - ExpandedViewProtocol, expands the view from the collection view cell
+
+-(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC
 {
-    LFExpandedCellViewController *lfExpanded = [[LFExpandedCellViewController alloc]initWithNibName:@"LFExpandedCellViewController" bundle:nil];
+    _lfExpanded = expandedVC;
+
+    [self.lfExpanded setCloseViewDelegate:self];
 
     //Get image stored in documents directory
     UIImage *tempImage = [MGAFNetworkingInterface getSavedImageWithName:[[_imageURLs objectAtIndex:_cellToExpand] lastPathComponent]];
@@ -146,14 +151,24 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
     UIImageView* imageView = [[UIImageView alloc] initWithImage:tempImage];
 
     //set image in detail view
-    [lfExpanded setFullsizeImage:imageView];
+    [_lfExpanded setFullsizeImage:imageView];
 
     [UIView animateWithDuration:0.2f delay:0.2f options:UIViewAnimationOptionShowHideTransitionViews animations:^{
-        [self.view addSubview:lfExpanded.view];
+        [self.view addSubview:_lfExpanded.view];
 
     } completion:^(BOOL finished) {
         
     }];
 }
+
+#pragma mark - CloseExpandedViewProtocol, closes the expanded view
+
+-(void)expandedViewControlledClosed
+{
+    [_lfExpanded.view removeFromSuperview];
+    [_lfExpanded removeFromParentViewController];
+    _lfExpanded = nil;
+}
+
 
 @end

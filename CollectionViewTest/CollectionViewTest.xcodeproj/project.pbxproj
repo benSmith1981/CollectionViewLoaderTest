@@ -37,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F28019316F0809B005EEDEB /* CloseExpandedViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CloseExpandedViewProtocol.h; sourceTree = "<group>"; };
 		0F33563516EF5DF100F8FB90 /* CollectionViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F33563816EF5DF100F8FB90 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0F33563A16EF5DF100F8FB90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -166,6 +167,7 @@
 				0F33565016EF5DF400F8FB90 /* LFCollectionViewController.h */,
 				0F33565116EF5DF400F8FB90 /* LFCollectionViewController.m */,
 				0F33565316EF5DF400F8FB90 /* LFCollectionViewController_iPhone.xib */,
+				0F28019316F0809B005EEDEB /* CloseExpandedViewProtocol.h */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -173,6 +175,7 @@
 		0F33566616EF6B4700F8FB90 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0F3356C116EFE9E900F8FB90 /* ExpandedViewProtocol.h */,
 				0F33566716EF6B6100F8FB90 /* LFPhotoCell.h */,
 				0F33566816EF6B6100F8FB90 /* LFPhotoCell.m */,
 			);
@@ -222,7 +225,6 @@
 				0F3356B816EFAC9300F8FB90 /* LFExpandedCellViewController.h */,
 				0F3356B916EFAC9300F8FB90 /* LFExpandedCellViewController.m */,
 				0F3356BA16EFAC9300F8FB90 /* LFExpandedCellViewController.xib */,
-				0F3356C116EFE9E900F8FB90 /* ExpandedViewProtocol.h */,
 			);
 			name = ExpandedView;
 			sourceTree = "<group>";

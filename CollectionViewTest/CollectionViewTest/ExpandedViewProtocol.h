@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LFExpandedCellViewController.h"
 
 @protocol ExpandedViewProtocol <NSObject>
--(void)expandTheImageView;
+-(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC;
 @end

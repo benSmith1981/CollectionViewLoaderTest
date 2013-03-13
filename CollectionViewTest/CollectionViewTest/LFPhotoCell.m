@@ -8,6 +8,7 @@
 
 #import "LFPhotoCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import "LFExpandedCellViewController.h"
 
 static id<ExpandedViewProtocol>expandedDelegate;
 
@@ -15,6 +16,8 @@ static id<ExpandedViewProtocol>expandedDelegate;
 @property (nonatomic, strong, readwrite) UIImageView *imageView;
 @property (nonatomic) CGFloat lastScale;
 @property (nonatomic) CGFloat originalScale;
+@property (nonatomic,strong)LFExpandedCellViewController* expandedVC;
+
 -(void)scale:(id)sender;
 -(void)createPinchRecogniserForView;
 @end
@@ -22,7 +25,7 @@ static id<ExpandedViewProtocol>expandedDelegate;
 @implementation LFPhotoCell
 @synthesize lastScale = _lastScale;
 @synthesize originalScale = _originalScale;
-
+@synthesize expandedVC = _expandedVC;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -78,7 +81,11 @@ static id<ExpandedViewProtocol>expandedDelegate;
     }
     NSLog(@"[(UIPinchGestureRecognizer*)sender scale] %f",[(UIPinchGestureRecognizer*)sender scale]);
     if ([(UIPinchGestureRecognizer*)sender scale] >= 2.5) {
-        [expandedDelegate expandTheImageView];
+        if (!_expandedVC)
+        {
+            _expandedVC = [[LFExpandedCellViewController alloc]initWithNibName:@"LFExpandedCellViewController" bundle:nil];
+            [expandedDelegate expandTheImageView:_expandedVC];
+        }
     }
 }
 

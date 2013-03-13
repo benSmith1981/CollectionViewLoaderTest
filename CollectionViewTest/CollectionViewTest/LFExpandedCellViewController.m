@@ -20,6 +20,7 @@
 @synthesize imageScrollView = _imageScrollView;
 @synthesize lastScale = _lastScale;
 @synthesize originalScale = _originalScale;
+@synthesize closeViewDelegate = _closeViewDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -70,6 +71,8 @@
 
 - (IBAction)closeView:(id)sender {
     //[self dismissViewControllerAnimated:YES completion:nil];
-    [self.view removeFromSuperview];
+    [_closeViewDelegate expandedViewControlledClosed];
 }
+
+
 @end
