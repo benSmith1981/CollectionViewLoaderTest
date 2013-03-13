@@ -27,7 +27,7 @@
     if (self) {
         // Custom initialization
         _fullsizeImage = [[UIImageView alloc] init];
-        [self createPinchRecogniserForView];
+        //[self createPinchRecogniserForView];
     }
     return self;
 }
