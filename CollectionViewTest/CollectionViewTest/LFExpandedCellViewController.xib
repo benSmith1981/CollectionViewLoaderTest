@@ -40,7 +40,7 @@
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{20, 0}, {275, 408}}</string>
+						<string key="NSFrame">{{20, 26}, {275, 408}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="383054360"/>
@@ -141,8 +141,8 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="67358784"/>
 							<reference ref="383054360"/>
+							<reference ref="67358784"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

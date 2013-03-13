@@ -16,7 +16,6 @@ static id<ExpandedViewProtocol>expandedDelegate;
 @property (nonatomic, strong, readwrite) UIImageView *imageView;
 @property (nonatomic) CGFloat lastScale;
 @property (nonatomic) CGFloat originalScale;
-@property (nonatomic,strong)LFExpandedCellViewController* expandedVC;
 
 -(void)scale:(id)sender;
 -(void)createPinchRecogniserForView;
@@ -26,6 +25,7 @@ static id<ExpandedViewProtocol>expandedDelegate;
 @synthesize lastScale = _lastScale;
 @synthesize originalScale = _originalScale;
 @synthesize expandedVC = _expandedVC;
+@synthesize cellNumber;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -38,6 +38,7 @@ static id<ExpandedViewProtocol>expandedDelegate;
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         self.imageView.clipsToBounds = YES;
         [self createPinchRecogniserForView];
+        [self.superview bringSubviewToFront:self];
         [self.contentView addSubview:self.imageView];
     }
     return self;
@@ -79,12 +80,14 @@ static id<ExpandedViewProtocol>expandedDelegate;
         [self setTransform:newTransform];
         _lastScale = [(UIPinchGestureRecognizer*)sender scale];
     }
+    
     NSLog(@"[(UIPinchGestureRecognizer*)sender scale] %f",[(UIPinchGestureRecognizer*)sender scale]);
-    if ([(UIPinchGestureRecognizer*)sender scale] >= 2.5) {
+    if ([(UIPinchGestureRecognizer*)sender scale] >= 2.5)
+    {
         if (!_expandedVC)
         {
             _expandedVC = [[LFExpandedCellViewController alloc]initWithNibName:@"LFExpandedCellViewController" bundle:nil];
-            [expandedDelegate expandTheImageView:_expandedVC];
+            [expandedDelegate expandTheImageView:_expandedVC photoCell:self];
         }
     }
 }

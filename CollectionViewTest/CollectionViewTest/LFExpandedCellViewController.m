@@ -28,7 +28,7 @@
     if (self) {
         // Custom initialization
         _fullsizeImage = [[UIImageView alloc] init];
-        //[self createPinchRecogniserForView];
+        [self createPinchRecogniserForView];
     }
     return self;
 }
@@ -47,6 +47,7 @@
 }
 
 -(void)createPinchRecogniserForView{
+    _fullsizeImage.userInteractionEnabled = YES;
     UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scale:)];
     [pinchRecognizer setDelegate:self];
     [_fullsizeImage addGestureRecognizer:pinchRecognizer];
@@ -65,12 +66,15 @@
     _lastScale = [(UIPinchGestureRecognizer*)sender scale];
     NSLog(@"[(UIPinchGestureRecognizer*)sender scale]: %f",[(UIPinchGestureRecognizer*)sender scale]);
     
-    //if([(UIPinchGestureRecognizer*)sender scale] < 0.5)
-        //[self.view removeFromSuperview];
+    if([(UIPinchGestureRecognizer*)sender scale] < 0.5)
+    {
+        if (self) {
+            [_closeViewDelegate expandedViewControlledClosed];
+        }
+    }
 }
 
 - (IBAction)closeView:(id)sender {
-    //[self dismissViewControllerAnimated:YES completion:nil];
     [_closeViewDelegate expandedViewControlledClosed];
 }
 

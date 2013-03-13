@@ -11,6 +11,6 @@
 #import "ExpandedViewProtocol.h"
 #import "LFExpandedCellViewController.h"
 
-@interface LFCollectionViewController : UICollectionViewController <UIGestureRecognizerDelegate, UICollectionViewDataSource, UICollectionViewDelegate,ParsingCompleteProtocol,CloseExpandedViewProtocol>
+@interface LFCollectionViewController : UICollectionViewController <UIGestureRecognizerDelegate, UICollectionViewDataSource, UICollectionViewDelegate,ParsingCompleteProtocol,CloseExpandedViewProtocol,ExpandedViewProtocol>
 @property (nonatomic,strong) LFExpandedCellViewController *lfExpanded;
 @end

@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "ExpandedViewProtocol.h"
-@class ExpandedViewProtocol;
+
+//@class ExpandedViewProtocol;
 
 @interface LFPhotoCell : UICollectionViewCell <UIGestureRecognizerDelegate>
 
+@property (nonatomic) NSInteger cellNumber;
 @property (nonatomic, strong, readonly) UIImageView *imageView;
+@property (nonatomic,strong)LFExpandedCellViewController* expandedVC;
+
 + (void)setExpandedViewProtocol:(id<ExpandedViewProtocol>)delegate;
 
 @end

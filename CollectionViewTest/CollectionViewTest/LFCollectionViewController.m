@@ -11,25 +11,23 @@
 #import "ParsingCompleteProtocol.h"
 #import "AFNetworking.h"
 #import "MGAFNetworkingInterface.h"
+#import <QuartzCore/QuartzCore.h>
 
 static NSString * const PhotoCellIdentifier = @"PhotoCell";
 
-@interface LFCollectionViewController ()<ExpandedViewProtocol>
+@interface LFCollectionViewController ()
 @property (nonatomic) NSInteger cellToExpand;
 @property (nonatomic,strong) NSArray* imageURLs;
-@property (nonatomic,strong) LFPhotoCell *photoCell;
 @end
 
 @implementation LFCollectionViewController
 @synthesize imageURLs = _imageURLs;
-@synthesize photoCell = _photoCell;
 @synthesize cellToExpand = _cellToExpand;
 @synthesize lfExpanded = _lfExpanded;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_cork.png"]];
     [self.collectionView registerClass:[LFPhotoCell class] forCellWithReuseIdentifier:PhotoCellIdentifier];
     
     //turn activity indicator on to show user images are loading
@@ -67,15 +65,17 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    _photoCell  = [cv dequeueReusableCellWithReuseIdentifier:PhotoCellIdentifier forIndexPath:indexPath];
+    LFPhotoCell *photoCell  = [cv dequeueReusableCellWithReuseIdentifier:PhotoCellIdentifier forIndexPath:indexPath];
 //    [_photoCell.imageView setImageWithURL:[[NSURL alloc]initWithString:[_imageURLs objectAtIndex:indexPath.item]]
 //                         placeholderImage:[UIImage imageNamed:@"loading.png"]];
     //Request MGAFNetworkingInterface to get the images to populate cells
-    [MGAFNetworkingInterface requestImageForCell:_photoCell
+    photoCell.cellNumber = indexPath.item;
+
+    [MGAFNetworkingInterface requestImageForCell:photoCell
                                            atRow:(int)indexPath.item
                                    withImageURLS:_imageURLs];
     
-    return _photoCell;
+    return photoCell;
 }
 
 #pragma mark - View Rotation
@@ -107,7 +107,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(100, 100);
+    return CGSizeMake(150, 150);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
@@ -123,9 +123,11 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 {
     // TODO: Select Item
     LFPhotoCell *cell = (LFPhotoCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    _cellToExpand = indexPath.item;
-    [self.collectionView bringSubviewToFront:cell.imageView];
-
+    cell.cellNumber = indexPath.item;
+    
+    [UIView animateWithDuration:0.2f animations:^{
+        
+    }];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -137,37 +139,59 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 //    }];
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+//    LFPhotoCell *cell = (LFPhotoCell*)[collectionView cellForItemAtIndexPath:indexPath];
+//    cell.cellNumber = indexPath.item;
+//    [self.collectionView bringSubviewToFront:cell.imageView];
+    return YES;
+}
+
 #pragma mark - ExpandedViewProtocol, expands the view from the collection view cell
 
--(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC
+-(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC photoCell:(LFPhotoCell*)cell
 {
     _lfExpanded = expandedVC;
 
     [self.lfExpanded setCloseViewDelegate:self];
 
     //Get image stored in documents directory
-    UIImage *tempImage = [MGAFNetworkingInterface getSavedImageWithName:[[_imageURLs objectAtIndex:_cellToExpand] lastPathComponent]];
+    UIImage *tempImage = [MGAFNetworkingInterface getSavedImageWithName:[[_imageURLs objectAtIndex:cell.cellNumber] lastPathComponent]];
 
     UIImageView* imageView = [[UIImageView alloc] initWithImage:tempImage];
 
     //set image in detail view
     [_lfExpanded setFullsizeImage:imageView];
 
-    [UIView animateWithDuration:0.2f delay:0.2f options:UIViewAnimationOptionShowHideTransitionViews animations:^{
-        [self.view addSubview:_lfExpanded.view];
-
-    } completion:^(BOOL finished) {
-        
-    }];
+    _lfExpanded.view.alpha = 0;
+    
+    [UIView animateWithDuration:1
+                     animations:^{
+                         _lfExpanded.view.alpha = 1;
+                         [self.view addSubview:_lfExpanded.view];
+                     }
+                     completion:^(BOOL fin){
+                         if (fin) {
+                             [cell setExpandedVC:nil];
+                         }
+                     }];
 }
 
 #pragma mark - CloseExpandedViewProtocol, closes the expanded view
 
 -(void)expandedViewControlledClosed
 {
-    [_lfExpanded.view removeFromSuperview];
-    [_lfExpanded removeFromParentViewController];
-    _lfExpanded = nil;
+    [UIView animateWithDuration:1
+                     animations:^{
+                         _lfExpanded.view.alpha = 0;
+
+                     }
+                     completion:^(BOOL fin){
+                         [_lfExpanded.view removeFromSuperview];
+                         [_lfExpanded removeFromParentViewController];
+                         _lfExpanded = nil;
+                     }];
+
 }
 
 

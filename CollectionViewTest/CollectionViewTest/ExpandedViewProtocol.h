@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LFExpandedCellViewController.h"
 
+@class LFPhotoCell;
 @protocol ExpandedViewProtocol <NSObject>
--(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC;
+-(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC photoCell:(LFPhotoCell*)cell;
 @end
