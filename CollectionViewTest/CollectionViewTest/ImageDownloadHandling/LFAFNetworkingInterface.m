@@ -54,11 +54,12 @@ static id<ParsingCompleteProtocol>parsingDelegate;
     NSURL *url = [[NSURL alloc]initWithString:[imageURLs objectAtIndex:row]];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
     //put in our NSURL request to the AFnetworking method to retrieve the image, but use a placeholder until it has
-    [cell.cellImageView setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"loading.png"]
+    __weak LFPhotoCell* weakCell = cell; //need to do this to stop retain cycle in following block
+    [weakCell.cellImageView setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"loading.png"]
                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
                                  {
                                      //Upon successful retrieval set the collection view image to that retrieved
-                                     cell.cellImageView.image = image;
+                                     weakCell.cellImageView.image = image;
                                      //Then on a background thread write this image to our docs directory for permanent storage
                                      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                                          [self writeImages:[imageURLs objectAtIndex:row] DataToFile:image];

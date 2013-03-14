@@ -77,8 +77,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,23 +84,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark Create gestures
 -(void)createSwipeGestureRecognisersForView{
+    //create first gesture recogniser to view and assign to the myRightAction method when detected
     UISwipeGestureRecognizer * recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myRightAction)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-    [self.view  addGestureRecognizer:recognizer];
+    [self.view addGestureRecognizer:recognizer];
     
+    //create second gesture recogniser to view and assign to the myLeftAction method when detected
     UISwipeGestureRecognizer * recognizer2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(myLeftAction)];
     [recognizer2 setDirection:(UISwipeGestureRecognizerDirectionLeft)];
-    [self.view  addGestureRecognizer:recognizer2];
+    [self.view addGestureRecognizer:recognizer2];
 }
 
 -(void)createPinchRecogniserForView{
+    //Create pinch gesture recogniser and assign to the scale: method when pinch is detected
     UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scale:)];
     [pinchRecognizer setDelegate:self];
     [self.view addGestureRecognizer:pinchRecognizer];
 }
 
+#pragma mark Action for pinch gesture
 -(void)scale:(id)sender{
     CGFloat scale;
     if([(UIPinchGestureRecognizer*)sender state] == UIGestureRecognizerStateBegan) {
@@ -118,7 +120,7 @@
     _lastScale = [(UIPinchGestureRecognizer*)sender scale];
 
     //If you pinch view and it is less that 0.8 scale value then...
-    if([(UIPinchGestureRecognizer*)sender scale] < 0.6)
+    if([(UIPinchGestureRecognizer*)sender scale] < 0.8)
     {
         //Checks if the view still exists
         if (self)
@@ -128,7 +130,7 @@
         }
     }
 }
-
+#pragma mark Actions for swipe gestures
 -(void)myRightAction
 {
     //check if current cell number -1 is at beginning of images (0 or less)
