@@ -35,6 +35,16 @@
 /** Action method called by the swipe gesture recogniser when a right swipe takes place, in this case we are going one image to the left in the collection cell view
  */
 -(void)myRightAction;
+
+/**Closes the currently opened view, animating it back to the cell position
+ */
+-(void)closeAnimation;
+
+/**Hides or shows all the views on the view, for example before opening animation is complete everything is hidden, afterwards everything is shown
+ @param BOOL Do we show or hide everything on our view
+ */
+- (void)hide:(BOOL)hide;
+
 @end
 
 @implementation LFExpandedCellViewController
@@ -45,12 +55,23 @@
 @synthesize imageURLS = _imageURLS;
 @synthesize currentCellNumber = _currentCellNumber;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//        // Custom initialization
+//        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+//    }
+//    return self;
+//}
+
+- (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:@"LFExpandedCellViewController" bundle:nil];
     if (self) {
-        // Custom initialization
-        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        //set frame to that of the value passed in (the collection view cell's frame)
+        self.view.frame = frame;
+        [self hide:YES];
     }
     return self;
 }
@@ -84,6 +105,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 #pragma mark Create gestures
 -(void)createSwipeGestureRecognisersForView{
     //create first gesture recogniser to view and assign to the myRightAction method when detected
@@ -125,8 +147,7 @@
         //Checks if the view still exists
         if (self)
         {
-            //and closes the view using our CloseExpandedViewProtocol method call back in parent view
-            [_closeViewDelegate expandedViewControlledClosed];
+            [self closeAnimation];
         }
     }
 }
@@ -181,6 +202,50 @@
                      completion:^(BOOL finished){
                          
                      }];
+}
+
+#pragma mark animate opening and hiding of view
+- (void)animateOpening
+{
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         self.view.frame = self.view.superview.bounds;
+                     }
+                     completion:^(BOOL finished) {
+                         [self hide:NO];
+                         [self.parentViewController.view bringSubviewToFront:self.view];
+                     }];
+}
+
+-(void)closeAnimation
+{
+    [UIView transitionWithView:self.view
+                      duration:1.0
+                       options:UIViewAnimationOptionCurveEaseIn animations:^{
+                           self.fullsizeImage.frame = _currentPhotoCell.frame;
+                       }
+                        completion:^(BOOL finished) {
+                            [_closeViewDelegate expandedViewControlledClosed];
+
+                       }];
+    
+//    [UIView animateWithDuration:1.0
+//                     animations:^{
+//                         self.view.frame = _currentPhotoCell.frame;
+//                     }
+//                     completion:^(BOOL finished) {
+//                         //and closes the view using our CloseExpandedViewProtocol method call back in parent view
+//                         [_closeViewDelegate expandedViewControlledClosed];
+//                     }];
+}
+
+- (void)hide:(BOOL)hide
+{
+    //iterate through each view in our view
+    for (UIView* view in self.view.subviews) {
+        //then set hidden property to whatever the value of the BOOL passed in is
+        view.hidden = hide;
+    }
 }
 
 @end

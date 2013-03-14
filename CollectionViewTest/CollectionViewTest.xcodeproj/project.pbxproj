@@ -422,15 +422,15 @@
 		0F33565D16EF5DF500F8FB90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ben Smith";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ben Smith";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CollectionViewTest/CollectionViewTest-Prefix.pch";
 				INFOPLIST_FILE = "CollectionViewTest/CollectionViewTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "552D49D6-170B-4EDF-ACE9-58F505CA1949";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "552D49D6-170B-4EDF-ACE9-58F505CA1949";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

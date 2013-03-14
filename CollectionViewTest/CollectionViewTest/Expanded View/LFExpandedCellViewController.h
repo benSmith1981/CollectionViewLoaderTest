@@ -26,4 +26,9 @@
 /** This is the delegate CloseExpandedViewProtocol which is used to call back to the parent view controller and close this view*/
 @property (nonatomic,strong)id<CloseExpandedViewProtocol>closeViewDelegate;
 
+- (id)initWithFrame:(CGRect)frame;
+
+/**Called from colleciton view controller to animate the cell appearing in full view
+ */
+- (void)animateOpening;
 @end

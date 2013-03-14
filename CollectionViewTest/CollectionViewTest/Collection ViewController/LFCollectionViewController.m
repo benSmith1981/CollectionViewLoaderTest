@@ -91,6 +91,36 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
     return photoCell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    LFPhotoCell *photoCell  = [collectionView dequeueReusableCellWithReuseIdentifier:PhotoCellIdentifier forIndexPath:indexPath];
+    photoCell.cellNumber = indexPath.item;
+
+    //Only open one cell at a time incase someone taps multiple cells
+    if (!_lfExpanded) {
+        _lfExpanded = [[LFExpandedCellViewController alloc]initWithFrame:photoCell.frame];
+        
+        //Set delegate call back of expanded VC so that the parent class can close it
+        [self.lfExpanded setCloseViewDelegate:self];
+        
+        //Get image stored in documents directory
+        UIImage *tempImage = [LFAFNetworkingInterface getSavedImageWithName:[[_imageURLs objectAtIndex:photoCell.cellNumber] lastPathComponent]];
+        UIImageView* imageView = [[UIImageView alloc] initWithImage:tempImage];
+        
+        //set image in detail view
+        [_lfExpanded setFullsizeImage:imageView];
+        _lfExpanded.currentPhotoCell = photoCell;
+        _lfExpanded.imageURLS = _imageURLs;
+        
+        //add hidden expanded view
+        [self.view addSubview:_lfExpanded.view];
+        
+        //then animate expanded view into view from cell position
+        [_lfExpanded animateOpening];
+    }
+
+}
+
 #pragma mark ImageParsingComplete Protocol method
 - (void) sendBackArrayOfImageURLs:(NSArray*)imageURLs;
 {
@@ -117,10 +147,6 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 
 -(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC photoCell:(LFPhotoCell*)cell
 {
- 
-    //Set the _lfExpanded to match that of this current view
-    //_lfExpanded.view.frame = self.view.frame;//CGRectMake(0,50, self.view.frame.size.width, self.view.frame.size.height);
-
     // set instance variables so view can be removed in expandedViewControlledClosed, and the _expandedVC created inside cell can also be set to nil
     _lfExpanded = expandedVC;
     _photoCell = cell;
@@ -137,42 +163,20 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
     UIImageView* imageView = [[UIImageView alloc] initWithImage:tempImage];
     //set image in detail view
     [_lfExpanded setFullsizeImage:imageView];
-
-    //set alpha to zero so we can animate view into view
-    _lfExpanded.view.alpha = 0;
-    
-    [UIView animateWithDuration:1
-                     animations:^{
-                         _lfExpanded.view.alpha = 1;
-                         //Open expanded view
-                         [self.view addSubview:_lfExpanded.view];
-                         //[self presentViewController:_lfExpanded animated:YES completion:nil];
-                     }
-                     completion:^(BOOL finished){
-
-                     }];
+    //add expanded view (set to hidden at first)
+    [self.view addSubview:_lfExpanded.view];
+    //Animate expanded view into view
+    [_lfExpanded animateOpening];
 }
 
-#pragma mark - CloseExpandedViewProtocol, closes the expanded view
+#pragma mark - CloseExpandedViewProtocol, closes the expanded view and sets to nil
 
 -(void)expandedViewControlledClosed
 {
-    _lfExpanded.view.alpha = 1;
-
-    [UIView animateWithDuration:1/9
-                     animations:^{
-                         //animate view out of view to alpha 0
-                         _lfExpanded.view.alpha = 0;
-                     }
-                     completion:^(BOOL fin){
-                         //Remove the _lfExpanded view and set to nil
-                         [_lfExpanded.view removeFromSuperview];
-//                         [_lfExpanded removeFromParentViewController];
-//                         _lfExpanded = nil;
-                         //set the expanded VC in the photo cell instance to nil, we do this here so that only after view has been opened and then closed is it reset, this stops multiple views being opened when we are pinching the collection view cell
-                         [_photoCell setExpandedVC:nil];
-                     }];
-
+    [_lfExpanded.view removeFromSuperview];
+    [_lfExpanded removeFromParentViewController];
+    _lfExpanded = nil;
+    [_photoCell setExpandedVC:nil];
 }
 
 
