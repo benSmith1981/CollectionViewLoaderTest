@@ -15,7 +15,7 @@
 @interface LFExpandedCellViewController : UIViewController
 
 /** This is the full size image that is displayed on in our expanded view*/
-@property (nonatomic,strong) UIImageView *fullsizeImage;
+@property (nonatomic,strong) IBOutlet UIImageView *fullsizeImage;
 
 /** This is the cell that the photo belongs to, used to get cell number */
 @property (nonatomic,strong) LFPhotoCell *currentPhotoCell;

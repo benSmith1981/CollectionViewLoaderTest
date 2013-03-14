@@ -115,7 +115,7 @@ static id<ExpandedViewProtocol>expandedDelegate;
         if (!_expandedVC)
         {
             //if not create it
-            _expandedVC = [[LFExpandedCellViewController alloc]init];
+            _expandedVC = [[LFExpandedCellViewController alloc]initWithNibName:@"LFExpandedCellViewController" bundle:nil];
             //call back to delegate collection view class with our newly created expanded view and the cells details
             [expandedDelegate expandTheImageView:_expandedVC photoCell:self];
         }
