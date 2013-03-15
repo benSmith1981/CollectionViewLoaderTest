@@ -155,6 +155,7 @@
     }
     //adjust scale value
     scale = 1.0 - (_lastScale - [(UIPinchGestureRecognizer*)sender scale]);
+    
     //perform transform on view
     CGAffineTransform currentTransform = self.view.transform;
     CGAffineTransform newTransform = CGAffineTransformScale(currentTransform, scale, scale);
@@ -163,6 +164,7 @@
 
     //If you pinch view and it is less that 0.8 scale value then...
     if([(UIPinchGestureRecognizer*)sender scale] < 0.8) {
+        
         //Use this BOOL to make sure only one call to this method is done
         if (!_closedAnimationHasBeenCalled) {
             [self closeAnimation];
@@ -181,6 +183,7 @@
         //take one off current cell number
         _currentCellNumber -=1;
     }
+    
     //Go and get the image from the documents directory that the cell shows, use afnetworking here incase the image we have swiped to hasn't already been downloaded
     [_fullsizeImage setImageWithURL:[[NSURL alloc]initWithString:[_imageURLS objectAtIndex:_currentCellNumber]]
                    placeholderImage:[UIImage imageNamed:@"no_image.png"]];
@@ -189,16 +192,15 @@
 -(void)myLeftAction
 {
     //check if current cell number + 1 is at end of images
-    if ((_currentCellNumber+1) >= [_imageURLS count])
-    {
+    if ((_currentCellNumber+1) >= [_imageURLS count]) {
         //if so reset to beginning
         _currentCellNumber = 0;
     }
-    else
-    {
+    else {
         //if not add one to cell number to get next image
         _currentCellNumber +=1;
     }
+    
     //get next image related to this cell number from _imageURLS array, should be stored in documents directory, use afnetworking here incase the image we have swiped to hasn't already been downloaded
     [_fullsizeImage setImageWithURL:[[NSURL alloc]initWithString:[_imageURLS objectAtIndex:_currentCellNumber]]
                    placeholderImage:[UIImage imageNamed:@"no_image.png"]];
@@ -262,6 +264,7 @@
 {
     //iterate through each view in our view
     for (UIView* view in self.view.subviews) {
+        
         //then set hidden property to whatever the value of the BOOL passed in is
         view.hidden = hide;
     }

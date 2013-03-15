@@ -117,7 +117,6 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
         //then animate expanded view into view from cell position
         [_lfExpanded animateOpening];
     }
-
 }
 
 #pragma mark ImageParsingComplete Protocol method

@@ -13,6 +13,7 @@
 
 /** Implement this to expand the image from a custom colleciton view cell, LFPhotoCell, into our View Controller*/
 @protocol ExpandedViewProtocol <NSObject>
+
 /**Called to expand the custom colleciton view cell into the expanded view controller
  @param LFExpandedCellViewController is the expanded view controller that the image from the cell appears larger in
  */

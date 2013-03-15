@@ -10,6 +10,7 @@
 
 /** Use this protocol to close the LFExpandedCellViewController*/
 @protocol CloseExpandedViewProtocol <NSObject>
+
 /**Animates closing of the expanded view controller
  */
 -(void)expandedViewControlledClosed;

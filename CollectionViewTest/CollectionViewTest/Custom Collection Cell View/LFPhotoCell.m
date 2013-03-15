@@ -96,8 +96,6 @@ static id<ExpandedViewProtocol>expandedDelegate;
         
         //get the original scale value so we can snap back to this
         _originalScale = [(UIPinchGestureRecognizer*)sender scale];
-//        CGPoint p1 = [sender locationOfTouch:0 inView:_collectionVC.view];
-//        self.cellImageView.frame = CGRectMake(p1.x, p1.y, cellHeight, cellWidth);
     }
     
     //If pinching has finished
