@@ -1,10 +1,9 @@
 //
-//  MGReachabilityCheck.h
-//  MGTest
+//  LFReachabilityCheck.h
+//  CollectionViewLoaderTest
 //
-//  Created by Ben on 24/02/2013.
-//  Copyright (c) 2013 Esteban. All rights reserved.
-//
+//  Created by Ben on 14/03/2013.
+//  
 
 #import <Foundation/Foundation.h>
 #import "LFCollectionViewController.h"
