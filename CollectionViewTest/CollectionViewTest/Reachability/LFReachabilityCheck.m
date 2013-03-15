@@ -1,9 +1,9 @@
 //
-//  MGReachabilityCheck.m
-//  MGTest
+//  LFReachabilityCheck.m
+//  CollectionViewLoaderTest
 //
 //  Created by Ben on 24/02/2013.
-//  Copyright (c) 2013 Esteban. All rights reserved.
+//  Copyright (c) 2013 Ben. All rights reserved.
 //
 
 #import "LFReachabilityCheck.h"
