@@ -11,8 +11,7 @@
 #import "AFNetworking.h"
 #import "LFAFNetworkingInterface.h"
 #import "LFConstants.h"
-//#import "LFExpandedCellViewController.h"
-#import "LFExpandedScrollView.h"
+#import "LFExpandedCellViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 static NSString * const PhotoCellIdentifier = @"PhotoCell";
@@ -22,9 +21,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 @property (nonatomic,strong) LFPhotoCell* photoCell;
 
 /** Leap Frog (lf) expanded view that we need reference to so as to close it*/
-//@property (nonatomic,strong) LFExpandedCellViewController *lfExpanded;
-@property (nonatomic,strong) LFExpandedScrollView *lfExpanded;
-
+@property (nonatomic,strong) LFExpandedCellViewController *lfExpanded;
 @end
 
 @implementation LFCollectionViewController
@@ -103,20 +100,20 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
     photoCell.cellNumber = indexPath.item;
 
     //Only open one cell at a time incase someone taps multiple cells
-//    if (!_lfExpanded) {
-//        _lfExpanded = [[LFExpandedCellViewController alloc]initWithFrame:photoCell.frame
-//                                                        andWithImagePath:[[_imageURLs objectAtIndex:photoCell.cellNumber] lastPathComponent]andImageURLs:_imageURLs
-//                                                          andCurrentCell:photoCell];
-//        
-//        //Set delegate call back of expanded VC so that the parent class can close it
-//        [self.lfExpanded setCloseViewDelegate:self];
-//        
-//        //add hidden expanded view
-//        [self.view addSubview:_lfExpanded.view];
-//        
-//        //then animate expanded view into view from cell position
-//        [_lfExpanded animateOpening];
-//    }
+    if (!_lfExpanded) {
+        _lfExpanded = [[LFExpandedCellViewController alloc]initWithFrame:photoCell.frame
+                                                        andWithImagePath:[[_imageURLs objectAtIndex:photoCell.cellNumber] lastPathComponent]andImageURLs:_imageURLs
+                                                          andCurrentCell:photoCell];
+        
+        //Set delegate call back of expanded VC so that the parent class can close it
+        [self.lfExpanded setCloseViewDelegate:self];
+        
+        //add hidden expanded view
+        [self.view addSubview:_lfExpanded.view];
+        
+        //then animate expanded view into view from cell position
+        [_lfExpanded animateOpening];
+    }
 
 }
 
@@ -144,8 +141,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 
 #pragma mark - ExpandedViewProtocol, expands the view from the collection view cell
 
-//-(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC
--(void)expandTheImageView:(LFExpandedScrollView*)expandedVC
+-(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC
 {
     // set instance variables so view can be removed in expandedViewControlledClosed, and the _expandedVC created inside cell can also be set to nil
     _lfExpanded = expandedVC;
@@ -167,7 +163,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
     //clear up the expanded view
     [_lfExpanded.view removeFromSuperview];
     [_lfExpanded removeFromParentViewController];
-    //[_lfExpanded.currentPhotoCell setExpandedVC:nil];
+    [_lfExpanded.currentPhotoCell setExpandedVC:nil];
     _lfExpanded = nil;
 }
 

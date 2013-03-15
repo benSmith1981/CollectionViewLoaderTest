@@ -16,6 +16,9 @@
 /** This is the delegate CloseExpandedViewProtocol which is used to call back to the parent view controller and close this view*/
 @property (nonatomic,strong)id<CloseExpandedViewProtocol>closeViewDelegate;
 
+/** This is the cell that the photo belongs to, used to get cell number */
+@property (nonatomic,strong) LFPhotoCell *currentPhotoCell;
+
 - (id)initWithFrame:(CGRect)frame andWithImagePath:(NSString*)imagePath andImageURLs:(NSArray*)imageURLsParam andCurrentCell:(LFPhotoCell*)photoCell;
 
 /**Called from colleciton view controller to animate the cell appearing in full view

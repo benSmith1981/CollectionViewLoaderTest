@@ -9,7 +9,6 @@
 #import "LFExpandedCellViewController.h"
 #import "LFAFNetworkingInterface.h"
 #import "AFNetworking.h"
-#import "LFExpandedScrollView.h"
 
 @interface LFExpandedCellViewController () <UIGestureRecognizerDelegate>
 /** private instance variable to hold the last scale factor so we know what to scale the view to*/
@@ -23,9 +22,6 @@
 
 /** This is the full size image that is displayed on in our expanded view*/
 @property (nonatomic,strong) IBOutlet UIImageView *fullsizeImage;
-
-/** This is the cell that the photo belongs to, used to get cell number */
-@property (nonatomic,strong) LFPhotoCell *currentPhotoCell;
 
 /** This is the array of image URLS so we can swipe between the images */
 @property (nonatomic,strong) NSArray *imageURLS;

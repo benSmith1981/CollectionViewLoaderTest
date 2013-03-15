@@ -25,8 +25,6 @@
 		0F2801DA16F2C5C3005EEDEB /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801D916F2C5C3005EEDEB /* icon.png */; };
 		0F2801DC16F2C5C8005EEDEB /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801DB16F2C5C7005EEDEB /* icon@2x.png */; };
 		0F2801DE16F2C6C9005EEDEB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801DD16F2C6C9005EEDEB /* Default-568h@2x.png */; };
-		0F2801E516F2D4B8005EEDEB /* LFExpandedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2801E316F2D4B8005EEDEB /* LFExpandedScrollView.m */; };
-		0F2801E616F2D4B8005EEDEB /* LFExpandedScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801E416F2D4B8005EEDEB /* LFExpandedScrollView.xib */; };
 		0F33563916EF5DF100F8FB90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563816EF5DF100F8FB90 /* UIKit.framework */; };
 		0F33563B16EF5DF100F8FB90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563A16EF5DF100F8FB90 /* Foundation.framework */; };
 		0F33563D16EF5DF100F8FB90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563C16EF5DF100F8FB90 /* CoreGraphics.framework */; };
@@ -71,9 +69,6 @@
 		0F2801D916F2C5C3005EEDEB /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0F2801DB16F2C5C7005EEDEB /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		0F2801DD16F2C6C9005EEDEB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		0F2801E216F2D4B8005EEDEB /* LFExpandedScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFExpandedScrollView.h; sourceTree = "<group>"; };
-		0F2801E316F2D4B8005EEDEB /* LFExpandedScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFExpandedScrollView.m; sourceTree = "<group>"; };
-		0F2801E416F2D4B8005EEDEB /* LFExpandedScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFExpandedScrollView.xib; sourceTree = "<group>"; };
 		0F33563516EF5DF100F8FB90 /* aLeagFrogTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aLeagFrogTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F33563816EF5DF100F8FB90 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0F33563A16EF5DF100F8FB90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -181,16 +176,6 @@
 			path = TestFlightSDK1.2;
 			sourceTree = "<group>";
 		};
-		0F2801E116F2D4B5005EEDEB /* ExpandedScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				0F2801E216F2D4B8005EEDEB /* LFExpandedScrollView.h */,
-				0F2801E316F2D4B8005EEDEB /* LFExpandedScrollView.m */,
-				0F2801E416F2D4B8005EEDEB /* LFExpandedScrollView.xib */,
-			);
-			path = ExpandedScrollView;
-			sourceTree = "<group>";
-		};
 		0F33562C16EF5DF100F8FB90 = {
 			isa = PBXGroup;
 			children = (
@@ -229,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				0F2801A116F145F7005EEDEB /* Assets */,
-				0F2801E116F2D4B5005EEDEB /* ExpandedScrollView */,
 				0F2801B616F146C5005EEDEB /* Expanded View */,
 				0F33566A16EF77E700F8FB90 /* ImageDownloadHandling */,
 				0F2801AC16F14629005EEDEB /* Custom Collection Cell View */,
@@ -355,7 +339,6 @@
 				0F2801DA16F2C5C3005EEDEB /* icon.png in Resources */,
 				0F2801DC16F2C5C8005EEDEB /* icon@2x.png in Resources */,
 				0F2801DE16F2C6C9005EEDEB /* Default-568h@2x.png in Resources */,
-				0F2801E616F2D4B8005EEDEB /* LFExpandedScrollView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +364,6 @@
 				0F2801B016F14629005EEDEB /* LFPhotoCell.m in Sources */,
 				0F2801B516F14684005EEDEB /* LFCollectionViewController.m in Sources */,
 				0F2801B916F146C6005EEDEB /* LFExpandedCellViewController.m in Sources */,
-				0F2801E516F2D4B8005EEDEB /* LFExpandedScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
