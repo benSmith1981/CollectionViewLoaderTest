@@ -11,6 +11,7 @@
 #import "LFCollectionViewController.h"
 #import "TestFlight.h"
 #import "LFReachabilityCheck.h"
+#import "LFAFNetworkingInterface.h"
 
 @implementation AppDelegate
 
@@ -41,11 +42,13 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    
+    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     //reset the AskedAboutConnection so if the internet is off we can ask user to retry connecting
     [LFReachabilityCheck setAskedAboutConnection:NO];
     
-    //Check whether we have an internet connection
-    [LFReachabilityCheck checkInternet];
+    //set off JSON request incase this failed due to poor connection or we need to reload images if JSON has been added to
+    [LFAFNetworkingInterface jsonRequestInitialiser];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
