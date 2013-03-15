@@ -67,7 +67,7 @@
 		0F2801C616F23A5C005EEDEB /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		0F2801C716F23A5C005EEDEB /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		0F2801CC16F23B4A005EEDEB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		0F33563516EF5DF100F8FB90 /* aLeagFrogTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aLeagFrogTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F33563516EF5DF100F8FB90 /* aFrogLeapTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aFrogLeapTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F33563816EF5DF100F8FB90 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0F33563A16EF5DF100F8FB90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0F33563C16EF5DF100F8FB90 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -194,7 +194,7 @@
 		0F33563616EF5DF100F8FB90 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0F33563516EF5DF100F8FB90 /* aLeagFrogTest.app */,
+				0F33563516EF5DF100F8FB90 /* aFrogLeapTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -307,7 +307,7 @@
 			);
 			name = CollectionViewTest;
 			productName = CollectionViewTest;
-			productReference = 0F33563516EF5DF100F8FB90 /* aLeagFrogTest.app */;
+			productReference = 0F33563516EF5DF100F8FB90 /* aFrogLeapTest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -477,7 +477,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/CollectionViewTest/TestFlightSDK1.2\"",
 				);
-				PRODUCT_NAME = aLeagFrogTest;
+				PRODUCT_NAME = aFrogLeapTest;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -498,7 +498,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/CollectionViewTest/TestFlightSDK1.2\"",
 				);
-				PRODUCT_NAME = aLeagFrogTest;
+				PRODUCT_NAME = aFrogLeapTest;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;

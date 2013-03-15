@@ -10,10 +10,9 @@
 #import "Reachability.h"
 #import "LFAFNetworkingInterface.h"
 
-static BOOL askedAboutConnection;
+static BOOL askedAboutConnection = NO;
 
 @implementation LFReachabilityCheck
-@synthesize collectionVC = _collectionVC;
 
 #pragma REACHIBILITY METHODS
 + (BOOL) connectedToNetwork
@@ -43,6 +42,7 @@ static BOOL askedAboutConnection;
                                      cancelButtonTitle:@"Cancel"
                                      otherButtonTitles:@"Retry", nil];
             [alert show];
+            askedAboutConnection = TRUE;
         }
         return NO;
 	}
@@ -57,6 +57,7 @@ static BOOL askedAboutConnection;
         //If connection fails restart the whole download from getting the JSON to then getting images, simplest way for now!
         //TODO would be better to make it so if it fails on an image it can retry for that image
         [LFAFNetworkingInterface jsonRequestInitialiser];
+        askedAboutConnection = FALSE;
     }
     else
     {
@@ -64,4 +65,7 @@ static BOOL askedAboutConnection;
     }
 }
 
++ (void) setAskedAboutConnection:(BOOL)asked{
+    askedAboutConnection = asked;
+}
 @end
