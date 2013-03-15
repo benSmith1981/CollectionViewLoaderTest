@@ -16,8 +16,4 @@
 /** Array of image urls returned from our JSON parser*/
 @property (nonatomic,strong) NSArray* imageURLs;
 
-/**
- Starts Json downloading followed by images
- */
-- (void)startJsonAndImageDownloading;
 @end

@@ -9,6 +9,7 @@
 #import "LFConstants.h"
 #import "AFNetworking.h"
 #import "LFAFNetworkingInterface.h"
+#import "LFReachabilityCheck.h"
 
 static id<ParsingCompleteProtocol>parsingDelegate;
 
@@ -45,6 +46,7 @@ static id<ParsingCompleteProtocol>parsingDelegate;
                                          }
                                          failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                              NSLog(@"Request Failed with Error: %@, %@", error, error.userInfo);
+                                             [LFReachabilityCheck checkInternet];
                                          }];
     [operation start];
 }
@@ -70,6 +72,7 @@ static id<ParsingCompleteProtocol>parsingDelegate;
                                  {
                                      //if retrieval fails print error description
                                      NSLog(@"%@",error.description);
+                                     [LFReachabilityCheck checkInternet];
                                  }];
 }
 

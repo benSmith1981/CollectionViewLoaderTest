@@ -15,10 +15,10 @@
 /**
  Are we connected to a network, finds out what type of network
  */
-- (BOOL) connectedToNetwork;
++ (BOOL) connectedToNetwork;
 
 /**
  Checks for internet connection and presents user with message to retry
  */
-- (BOOL) checkInternet;
++ (BOOL) checkInternet;
 @end

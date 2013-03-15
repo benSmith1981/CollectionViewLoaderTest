@@ -12,7 +12,6 @@
 #import "LFAFNetworkingInterface.h"
 #import "LFConstants.h"
 #import "LFExpandedCellViewController.h"
-#import "LFReachabilityCheck.h"
 #import <QuartzCore/QuartzCore.h>
 
 static NSString * const PhotoCellIdentifier = @"PhotoCell";
@@ -20,9 +19,6 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 @interface LFCollectionViewController ()
 /** The collection view cell, we have a local copy so that we can reset the expanded view inside of it */
 @property (nonatomic,strong) LFPhotoCell* photoCell;
-
-/** Checks for network connection*/
-@property (nonatomic,strong) LFReachabilityCheck* reachabilityCheck;
 
 /** Leap Frog (lf) expanded view that we need reference to so as to close it*/
 @property (nonatomic,strong) LFExpandedCellViewController *lfExpanded;
@@ -32,50 +28,28 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 @synthesize imageURLs = _imageURLs;
 @synthesize lfExpanded = _lfExpanded;
 @synthesize photoCell = _photoCell;
-@synthesize reachabilityCheck = _reachabilityCheck;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //create reachability instance
-    _reachabilityCheck = [[LFReachabilityCheck alloc]init];
     
-    //give it access to this class to retry when no network
-    _reachabilityCheck.collectionVC = self;
-    
+    //Register the cell with collection view
     [self.collectionView registerClass:[LFPhotoCell class] forCellWithReuseIdentifier:PhotoCellIdentifier];
-    if ([_reachabilityCheck checkInternet]) {
-        
-        //sets this class up to receive delegate call back when JSON is parsed
-        [LFAFNetworkingInterface setImageManifestProtocol:self];
-        
-        //intialise array to hold image URLS returned from JSON request
-        _imageURLs =  [[NSArray alloc]init];
-        
-        //sets this up as delegate for expanded view to call back on
-        [LFPhotoCell setExpandedViewProtocol:self];
-        
-        //turn activity indicator on to show user images are loading
-        AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
-        
-        //sets off AF networking to parse JSON
-        [LFAFNetworkingInterface jsonRequestInitialiser];
-    }
-}
-
-- (void)startJsonAndImageDownloading
-{
-    if ([_reachabilityCheck checkInternet])
-    {
-        //sets this class up to receive delegate call back when JSON is parsed
-        [LFAFNetworkingInterface setImageManifestProtocol:self];
-        
-        //turn activity indicator on to show user images are loading
-        AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
-        
-        //sets off AF networking to parse JSON
-        [LFAFNetworkingInterface jsonRequestInitialiser];
-    }
+    
+    //sets this class up to receive delegate call back when JSON is parsed
+    [LFAFNetworkingInterface setImageManifestProtocol:self];
+    
+    //intialise array to hold image URLS returned from JSON request
+    _imageURLs =  [[NSArray alloc]init];
+    
+    //sets this up as delegate for expanded view to call back on
+    [LFPhotoCell setExpandedViewProtocol:self];
+    
+    //turn activity indicator on to show user images are loading
+    AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
+    
+    //sets off AF networking to parse JSON
+    [LFAFNetworkingInterface jsonRequestInitialiser];
 }
 
 - (void)didReceiveMemoryWarning

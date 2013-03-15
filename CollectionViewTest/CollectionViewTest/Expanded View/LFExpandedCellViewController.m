@@ -183,7 +183,7 @@
     }
     //Go and get the image from the documents directory that the cell shows, use afnetworking here incase the image we have swiped to hasn't already been downloaded
     [_fullsizeImage setImageWithURL:[[NSURL alloc]initWithString:[_imageURLS objectAtIndex:_currentCellNumber]]
-                   placeholderImage:nil];
+                   placeholderImage:[UIImage imageNamed:@"no_image.png"]];
 }
 
 -(void)myLeftAction
@@ -201,7 +201,7 @@
     }
     //get next image related to this cell number from _imageURLS array, should be stored in documents directory, use afnetworking here incase the image we have swiped to hasn't already been downloaded
     [_fullsizeImage setImageWithURL:[[NSURL alloc]initWithString:[_imageURLS objectAtIndex:_currentCellNumber]]
-                   placeholderImage:nil];
+                   placeholderImage:[UIImage imageNamed:@"no_image.png"]];
 }
 
 #pragma mark animate opening and hiding of view

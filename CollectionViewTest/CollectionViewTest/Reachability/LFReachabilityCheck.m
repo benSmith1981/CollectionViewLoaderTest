@@ -8,13 +8,15 @@
 
 #import "LFReachabilityCheck.h"
 #import "Reachability.h"
-#import "LFCollectionViewController.h"
+#import "LFAFNetworkingInterface.h"
+
+static BOOL askedAboutConnection;
 
 @implementation LFReachabilityCheck
 @synthesize collectionVC = _collectionVC;
 
 #pragma REACHIBILITY METHODS
-- (BOOL) connectedToNetwork
++ (BOOL) connectedToNetwork
 {
 	Reachability *r = [Reachability reachabilityWithHostName:@"www.google.co.uk"];
 	NetworkStatus internetStatus = [r currentReachabilityStatus];
@@ -27,30 +29,39 @@
 	return internet;
 }
 
-- (BOOL) checkInternet
++ (BOOL) checkInternet
 {
 	//Make sure we have internet connectivity
 	if([self connectedToNetwork] != YES)
 	{
-        UIAlertView *alert = nil;
-        
-        alert = [[UIAlertView alloc] initWithTitle:@"No Network Connectivity!"
-                                           message:@"No network connection found. An Internet connection is required for this application to work"
-                                          delegate:self
-                                 cancelButtonTitle:nil
-                                 otherButtonTitles:@"Retry", nil];
-        [alert show];
-        
-		return NO;
+        if (!askedAboutConnection) {
+            UIAlertView *alert = nil;
+            
+            alert = [[UIAlertView alloc] initWithTitle:@"No Network Connectivity!"
+                                               message:@"No network connection found. An Internet connection is required for this application to work"
+                                              delegate:self
+                                     cancelButtonTitle:@"Cancel"
+                                     otherButtonTitles:@"Retry", nil];
+            [alert show];
+        }
+        return NO;
 	}
 	else {
 		return YES;
 	}
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
++ (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [_collectionVC startJsonAndImageDownloading];
+    if (buttonIndex == 1) {
+        //If connection fails restart the whole download from getting the JSON to then getting images, simplest way for now!
+        //TODO would be better to make it so if it fails on an image it can retry for that image
+        [LFAFNetworkingInterface jsonRequestInitialiser];
+    }
+    else
+    {
+        askedAboutConnection = TRUE;
+    }
 }
 
 @end
