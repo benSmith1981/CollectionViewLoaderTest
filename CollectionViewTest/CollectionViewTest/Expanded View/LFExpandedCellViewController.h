@@ -12,7 +12,7 @@
 #import "LFCollectionViewController.h"
 @class CloseExpandedViewProtocol;
 
-@interface LFExpandedCellViewController : UIViewController
+@interface LFExpandedCellViewController : UIViewController <UIScrollViewDelegate>
 
 /** This is the full size image that is displayed on in our expanded view*/
 @property (nonatomic,strong) IBOutlet UIImageView *fullsizeImage;
@@ -26,7 +26,7 @@
 /** This is the delegate CloseExpandedViewProtocol which is used to call back to the parent view controller and close this view*/
 @property (nonatomic,strong)id<CloseExpandedViewProtocol>closeViewDelegate;
 
-- (id)initWithFrame:(CGRect)frame;
+- (id)initWithFrame:(CGRect)frame andWithImagePath:(NSString*)imagePath andImageURLs:(NSArray*)imageURLsParam andCurrentCell:(LFPhotoCell*)photoCell;
 
 /**Called from colleciton view controller to animate the cell appearing in full view
  */

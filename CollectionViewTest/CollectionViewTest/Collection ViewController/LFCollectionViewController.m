@@ -17,9 +17,6 @@
 static NSString * const PhotoCellIdentifier = @"PhotoCell";
 
 @interface LFCollectionViewController ()
-/** Array of image urls returned from our JSON parser*/
-@property (nonatomic,strong) NSArray* imageURLs;
-
 /** The collection view cell, we have a local copy so that we can reset the expanded view inside of it */
 @property (nonatomic,strong) LFPhotoCell* photoCell;
 
@@ -40,10 +37,13 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
     
     //turn activity indicator on to show user images are loading
     AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
+    
     //sets this class up to receive delegate call back when JSON is parsed
     [LFAFNetworkingInterface setImageManifestProtocol:self];
+    
     //intialise array to hold image URLS returned from JSON request
     _imageURLs =  [[NSArray alloc]init];
+    
     //sets off AF networking to parse JSON
     [LFAFNetworkingInterface jsonRequestInitialiser];
     [LFPhotoCell setExpandedViewProtocol:self];
@@ -74,15 +74,16 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LFPhotoCell *photoCell  = [cv dequeueReusableCellWithReuseIdentifier:PhotoCellIdentifier forIndexPath:indexPath];
-
+    
     //Set the custom cells cell number
     photoCell.cellNumber = indexPath.item;
     
     //Let custom cell have access to this collection view so a cell can be brought to front when pinched
     photoCell.collectionVC = self;
-    
-//    [photoCell.cellImageView setImageWithURL:[[NSURL alloc]initWithString:[_imageURLs objectAtIndex:indexPath.item]]
-//                            placeholderImage:[UIImage imageNamed:@"loading.png"]];
+
+    //set image urls
+    photoCell.imageURLsLocal = _imageURLs;
+        
     //Request LFAFNetworkingInterface to get the images to populate cells
     [LFAFNetworkingInterface requestImageForCell:photoCell
                                            atRow:(int)indexPath.item
@@ -94,23 +95,18 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LFPhotoCell *photoCell  = [collectionView dequeueReusableCellWithReuseIdentifier:PhotoCellIdentifier forIndexPath:indexPath];
+    
+    //set the photo cells number for access later by the expanded view
     photoCell.cellNumber = indexPath.item;
 
     //Only open one cell at a time incase someone taps multiple cells
     if (!_lfExpanded) {
-        _lfExpanded = [[LFExpandedCellViewController alloc]initWithFrame:photoCell.frame];
+        _lfExpanded = [[LFExpandedCellViewController alloc]initWithFrame:photoCell.frame
+                                                        andWithImagePath:[[_imageURLs objectAtIndex:photoCell.cellNumber] lastPathComponent]andImageURLs:_imageURLs
+                                                          andCurrentCell:photoCell];
         
         //Set delegate call back of expanded VC so that the parent class can close it
         [self.lfExpanded setCloseViewDelegate:self];
-        
-        //Get image stored in documents directory
-        UIImage *tempImage = [LFAFNetworkingInterface getSavedImageWithName:[[_imageURLs objectAtIndex:photoCell.cellNumber] lastPathComponent]];
-        UIImageView* imageView = [[UIImageView alloc] initWithImage:tempImage];
-        
-        //set image in detail view
-        [_lfExpanded setFullsizeImage:imageView];
-        _lfExpanded.currentPhotoCell = photoCell;
-        _lfExpanded.imageURLS = _imageURLs;
         
         //add hidden expanded view
         [self.view addSubview:_lfExpanded.view];
@@ -145,26 +141,17 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 
 #pragma mark - ExpandedViewProtocol, expands the view from the collection view cell
 
--(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC photoCell:(LFPhotoCell*)cell
+-(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC
 {
     // set instance variables so view can be removed in expandedViewControlledClosed, and the _expandedVC created inside cell can also be set to nil
     _lfExpanded = expandedVC;
-    _photoCell = cell;
-
-    //set the instance variables inside of _lfExpanded so has acccess to the cell and the imageURLs array so we can swipe between photos
-    _lfExpanded.currentPhotoCell = cell;
-    _lfExpanded.imageURLS = _imageURLs;
     
     //Set delegate call back of expanded VC so that the parent class can close it
     [self.lfExpanded setCloseViewDelegate:self];
-
-    //Get image stored in documents directory
-    UIImage *tempImage = [LFAFNetworkingInterface getSavedImageWithName:[[_imageURLs objectAtIndex:cell.cellNumber] lastPathComponent]];
-    UIImageView* imageView = [[UIImageView alloc] initWithImage:tempImage];
-    //set image in detail view
-    [_lfExpanded setFullsizeImage:imageView];
+    
     //add expanded view (set to hidden at first)
     [self.view addSubview:_lfExpanded.view];
+    
     //Animate expanded view into view
     [_lfExpanded animateOpening];
 }
@@ -173,11 +160,11 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 
 -(void)expandedViewControlledClosed
 {
+    //clear up the expanded view
     [_lfExpanded.view removeFromSuperview];
     [_lfExpanded removeFromParentViewController];
+    [_lfExpanded.currentPhotoCell setExpandedVC:nil];
     _lfExpanded = nil;
-    [_photoCell setExpandedVC:nil];
 }
-
 
 @end

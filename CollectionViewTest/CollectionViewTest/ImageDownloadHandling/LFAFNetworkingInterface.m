@@ -13,6 +13,7 @@
 static id<ParsingCompleteProtocol>parsingDelegate;
 
 @interface LFAFNetworkingInterface ()
+//static NSArray *imageURLsStatic;
 
 /**Returns the image directory path that we store our images in
  @return NSString The image directory path for images
@@ -35,7 +36,6 @@ static id<ParsingCompleteProtocol>parsingDelegate;
     AFJSONRequestOperation *operation = [AFJSONRequestOperation
                                          JSONRequestOperationWithRequest:request
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
-                                             NSLog(@"%@", JSON);
                                              //Get the image manifest dictionary
                                              NSDictionary *temp = [JSON objectForKey:@"image-manifest"];
                                              //Get the images array from dictionary
@@ -60,6 +60,7 @@ static id<ParsingCompleteProtocol>parsingDelegate;
                                  {
                                      //Upon successful retrieval set the collection view image to that retrieved
                                      weakCell.cellImageView.image = image;
+                                     //weakCell.cellImageView.contentMode = UIViewContentModeScaleAspectFill;
                                      //Then on a background thread write this image to our docs directory for permanent storage
                                      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                                          [self writeImages:[imageURLs objectAtIndex:row] DataToFile:image];

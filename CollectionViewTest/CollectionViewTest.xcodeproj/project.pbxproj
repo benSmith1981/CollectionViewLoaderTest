@@ -16,6 +16,13 @@
 		0F2801B516F14684005EEDEB /* LFCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2801B416F14684005EEDEB /* LFCollectionViewController.m */; };
 		0F2801B916F146C6005EEDEB /* LFExpandedCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2801B816F146C6005EEDEB /* LFExpandedCellViewController.m */; };
 		0F2801BB16F166B7005EEDEB /* LFExpandedCellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801BA16F166B7005EEDEB /* LFExpandedCellViewController.xib */; };
+		0F2801C016F21F63005EEDEB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2801BF16F21F63005EEDEB /* SystemConfiguration.framework */; };
+		0F2801C216F21F6C005EEDEB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2801C116F21F6C005EEDEB /* MobileCoreServices.framework */; };
+		0F2801C916F23A5C005EEDEB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801C516F23A5C005EEDEB /* README.md */; };
+		0F2801CA16F23A5C005EEDEB /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801C616F23A5C005EEDEB /* release_notes.md */; };
+		0F2801CB16F23B2A005EEDEB /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2801C416F23A5C005EEDEB /* libTestFlight.a */; };
+		0F2801CD16F23B4B005EEDEB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2801CC16F23B4A005EEDEB /* libz.dylib */; };
+		0F2801D816F2B737005EEDEB /* LFExpandedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2801D716F2B736005EEDEB /* LFExpandedScrollView.m */; };
 		0F33563916EF5DF100F8FB90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563816EF5DF100F8FB90 /* UIKit.framework */; };
 		0F33563B16EF5DF100F8FB90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563A16EF5DF100F8FB90 /* Foundation.framework */; };
 		0F33563D16EF5DF100F8FB90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563C16EF5DF100F8FB90 /* CoreGraphics.framework */; };
@@ -50,6 +57,15 @@
 		0F2801B716F146C6005EEDEB /* LFExpandedCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFExpandedCellViewController.h; sourceTree = "<group>"; };
 		0F2801B816F146C6005EEDEB /* LFExpandedCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFExpandedCellViewController.m; sourceTree = "<group>"; };
 		0F2801BA16F166B7005EEDEB /* LFExpandedCellViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LFExpandedCellViewController.xib; sourceTree = "<group>"; };
+		0F2801BF16F21F63005EEDEB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0F2801C116F21F6C005EEDEB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		0F2801C416F23A5C005EEDEB /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = CollectionViewTest/TestFlightSDK1.2/libTestFlight.a; sourceTree = "<group>"; };
+		0F2801C516F23A5C005EEDEB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		0F2801C616F23A5C005EEDEB /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		0F2801C716F23A5C005EEDEB /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		0F2801CC16F23B4A005EEDEB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		0F2801D616F2B735005EEDEB /* LFExpandedScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFExpandedScrollView.h; sourceTree = "<group>"; };
+		0F2801D716F2B736005EEDEB /* LFExpandedScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFExpandedScrollView.m; sourceTree = "<group>"; };
 		0F33563516EF5DF100F8FB90 /* CollectionViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F33563816EF5DF100F8FB90 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0F33563A16EF5DF100F8FB90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,9 +107,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F2801CD16F23B4B005EEDEB /* libz.dylib in Frameworks */,
+				0F2801C216F21F6C005EEDEB /* MobileCoreServices.framework in Frameworks */,
+				0F2801C016F21F63005EEDEB /* SystemConfiguration.framework in Frameworks */,
 				0F33563916EF5DF100F8FB90 /* UIKit.framework in Frameworks */,
 				0F33563B16EF5DF100F8FB90 /* Foundation.framework in Frameworks */,
 				0F33563D16EF5DF100F8FB90 /* CoreGraphics.framework in Frameworks */,
+				0F2801CB16F23B2A005EEDEB /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,8 +159,20 @@
 				0F2801B716F146C6005EEDEB /* LFExpandedCellViewController.h */,
 				0F2801B816F146C6005EEDEB /* LFExpandedCellViewController.m */,
 				0F2801BA16F166B7005EEDEB /* LFExpandedCellViewController.xib */,
+				0F2801D616F2B735005EEDEB /* LFExpandedScrollView.h */,
+				0F2801D716F2B736005EEDEB /* LFExpandedScrollView.m */,
 			);
 			path = "Expanded View";
+			sourceTree = "<group>";
+		};
+		0F2801C316F23A5B005EEDEB /* TestFlightSDK1.2 */ = {
+			isa = PBXGroup;
+			children = (
+				0F2801C516F23A5C005EEDEB /* README.md */,
+				0F2801C616F23A5C005EEDEB /* release_notes.md */,
+				0F2801C716F23A5C005EEDEB /* TestFlight.h */,
+			);
+			path = TestFlightSDK1.2;
 			sourceTree = "<group>";
 		};
 		0F33562C16EF5DF100F8FB90 = {
@@ -163,6 +195,10 @@
 		0F33563716EF5DF100F8FB90 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F2801C416F23A5C005EEDEB /* libTestFlight.a */,
+				0F2801CC16F23B4A005EEDEB /* libz.dylib */,
+				0F2801C116F21F6C005EEDEB /* MobileCoreServices.framework */,
+				0F2801BF16F21F63005EEDEB /* SystemConfiguration.framework */,
 				0F33563816EF5DF100F8FB90 /* UIKit.framework */,
 				0F33563A16EF5DF100F8FB90 /* Foundation.framework */,
 				0F33563C16EF5DF100F8FB90 /* CoreGraphics.framework */,
@@ -189,6 +225,7 @@
 		0F33563F16EF5DF200F8FB90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0F2801C316F23A5B005EEDEB /* TestFlightSDK1.2 */,
 				0F33564016EF5DF200F8FB90 /* CollectionViewTest-Info.plist */,
 				0F33564116EF5DF200F8FB90 /* InfoPlist.strings */,
 				0F33564416EF5DF200F8FB90 /* main.m */,
@@ -293,6 +330,8 @@
 				0F2801AA16F145F8005EEDEB /* loading.png in Resources */,
 				0F2801AB16F145F8005EEDEB /* no_image.jpg in Resources */,
 				0F2801BB16F166B7005EEDEB /* LFExpandedCellViewController.xib in Resources */,
+				0F2801C916F23A5C005EEDEB /* README.md in Resources */,
+				0F2801CA16F23A5C005EEDEB /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +357,7 @@
 				0F2801B016F14629005EEDEB /* LFPhotoCell.m in Sources */,
 				0F2801B516F14684005EEDEB /* LFCollectionViewController.m in Sources */,
 				0F2801B916F146C6005EEDEB /* LFExpandedCellViewController.m in Sources */,
+				0F2801D816F2B737005EEDEB /* LFExpandedScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +451,10 @@
 				GCC_PREFIX_HEADER = "CollectionViewTest/CollectionViewTest-Prefix.pch";
 				INFOPLIST_FILE = "CollectionViewTest/CollectionViewTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/CollectionViewTest/TestFlightSDK1.2\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -422,15 +466,19 @@
 		0F33565D16EF5DF500F8FB90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ben Smith";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ben Smith";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CollectionViewTest/CollectionViewTest-Prefix.pch";
 				INFOPLIST_FILE = "CollectionViewTest/CollectionViewTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/CollectionViewTest/TestFlightSDK1.2\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "552D49D6-170B-4EDF-ACE9-58F505CA1949";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "552D49D6-170B-4EDF-ACE9-58F505CA1949";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

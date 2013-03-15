@@ -11,5 +11,9 @@
 #import "ExpandedViewProtocol.h"
 #import "CloseExpandedViewProtocol.h"
 
-@interface LFCollectionViewController : UICollectionViewController <UIGestureRecognizerDelegate,UICollectionViewDataSource, UICollectionViewDelegate,ParsingCompleteProtocol,CloseExpandedViewProtocol,ExpandedViewProtocol>
+@interface LFCollectionViewController : UICollectionViewController <UIGestureRecognizerDelegate,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ParsingCompleteProtocol,CloseExpandedViewProtocol,ExpandedViewProtocol>
+
+/** Array of image urls returned from our JSON parser*/
+@property (nonatomic,strong) NSArray* imageURLs;
+
 @end

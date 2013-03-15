@@ -9,11 +9,14 @@
 #import "AppDelegate.h"
 
 #import "LFCollectionViewController.h"
+#import "TestFlight.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [TestFlight takeOff:@"59767a0b-3c07-4d05-b07d-0812d3cf7019"];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.viewController = [[LFCollectionViewController alloc] initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];

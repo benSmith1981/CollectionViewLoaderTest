@@ -9,6 +9,8 @@
 #import "LFPhotoCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "LFExpandedCellViewController.h"
+#import "LFAFNetworkingInterface.h"
+#import "LFConstants.h"
 
 /** Created a static ExpandedViewProtocol variable so can be set in the class method call*/
 static id<ExpandedViewProtocol>expandedDelegate;
@@ -35,29 +37,39 @@ static id<ExpandedViewProtocol>expandedDelegate;
 @synthesize expandedVC = _expandedVC;
 @synthesize collectionVC = _collectionVC;
 @synthesize cellNumber = _cellNumber;
+@synthesize imageURLsLocal = _imageURLsLocal;
+@synthesize originalFrame = _originalFrame;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self)
     {
-        //set our ImageView to be same size as the cell
+        //save original frame value;
+        _originalFrame = self.frame;
+        
+        //set frame size of cell
         self.cellImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
+        
         //set its resizing mask to be flexible height and width so it adjusts
-        self.cellImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-        self.cellImageView.backgroundColor = [UIColor underPageBackgroundColor];
+        self.cellImageView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+        
         //set imageview to aspect fit inside the cell
-        self.cellImageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.cellImageView.clipsToBounds = YES;
+        self.cellImageView.contentMode = UIViewContentModeScaleAspectFit;
         
         //Create the pinch gesture recogniser for the cell so we can grow it
         [self createPinchRecogniserForView];
-        [_collectionVC.view bringSubviewToFront:self];
 
         //add imageview to the content view
         [self.contentView addSubview:self.cellImageView];
+        
     }
     return self;
+}
+
+-(void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    [self setNeedsDisplay]; // force drawRect:
 }
 
 - (void)prepareForReuse
@@ -75,13 +87,17 @@ static id<ExpandedViewProtocol>expandedDelegate;
 -(void)scale:(id)sender{
     //bring cell to front, above all other cells
     [_collectionVC.view bringSubviewToFront:self.cellImageView];
-    CGFloat scale;
+    CGFloat scale = 0;
+    
     //if we have begun pinching
     if([(UIPinchGestureRecognizer*)sender state] == UIGestureRecognizerStateBegan)
     {
         _lastScale = 1.0;
+        
         //get the original scale value so we can snap back to this
         _originalScale = [(UIPinchGestureRecognizer*)sender scale];
+//        CGPoint p1 = [sender locationOfTouch:0 inView:_collectionVC.view];
+//        self.cellImageView.frame = CGRectMake(p1.x, p1.y, cellHeight, cellWidth);
     }
     
     //If pinching has finished
@@ -89,18 +105,42 @@ static id<ExpandedViewProtocol>expandedDelegate;
     {
         //The set scale to original value
         scale = _originalScale;
+        
         //Animate transition of cell back to old size
         [UIView animateWithDuration:0.2f animations:^{
+            
             //by creating a transform
             CGAffineTransform newTransform = CGAffineTransformMakeScale(scale, scale);
+            
             //then setting the cell
             [self setTransform:newTransform];
         }];
     }
-    else //if we haven't finished
+
+    //Check to see if pinch scale reaches a certain size then expand the view
+    if ([(UIPinchGestureRecognizer*)sender scale] >= 1.5)
+    {
+        //check if expanded view has been created yet
+        if (!_expandedVC)
+        {
+            //save original frame value;
+            _originalFrame = self.frame;
+            
+            //if not create it
+            _expandedVC = [[LFExpandedCellViewController alloc]initWithFrame:self.frame
+                                                            andWithImagePath:[[_imageURLsLocal objectAtIndex:_cellNumber] lastPathComponent]
+                                                                andImageURLs:_imageURLsLocal
+                                                              andCurrentCell:self];
+            
+            //call back to delegate collection view class with our newly created expanded view and the cells details
+            [expandedDelegate expandTheImageView:_expandedVC];
+        }
+    }
+    else //if doesn't reach this size keep scaling it
     {
         //calculate new scale value according to pinch size
         scale = 1.0 - (_lastScale - [(UIPinchGestureRecognizer*)sender scale]);
+        
         //transform and scale the cell
         CGAffineTransform currentTransform = self.transform;
         CGAffineTransform newTransform = CGAffineTransformScale(currentTransform, scale, scale);
@@ -108,19 +148,6 @@ static id<ExpandedViewProtocol>expandedDelegate;
         _lastScale = [(UIPinchGestureRecognizer*)sender scale];
     }
 
-    //If we pinch so cell is of a certain size
-    if ([(UIPinchGestureRecognizer*)sender scale] >= 2.5)
-    {
-        //check if expanded view has been created yet
-        if (!_expandedVC)
-        {
-            //if not create it
-            //_expandedVC = [[LFExpandedCellViewController alloc]initWithNibName:@"LFExpandedCellViewController" bundle:nil];
-            _expandedVC = [[LFExpandedCellViewController alloc]initWithFrame:self.frame];
-            //call back to delegate collection view class with our newly created expanded view and the cells details
-            [expandedDelegate expandTheImageView:_expandedVC photoCell:self];
-        }
-    }
 }
 
 + (void)setExpandedViewProtocol:(id<ExpandedViewProtocol>)delegate
