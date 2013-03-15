@@ -22,9 +22,6 @@
 		0F2801CA16F23A5C005EEDEB /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801C616F23A5C005EEDEB /* release_notes.md */; };
 		0F2801CB16F23B2A005EEDEB /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2801C416F23A5C005EEDEB /* libTestFlight.a */; };
 		0F2801CD16F23B4B005EEDEB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2801CC16F23B4A005EEDEB /* libz.dylib */; };
-		0F2801EA16F2DDE6005EEDEB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801E716F2DDE6005EEDEB /* Default-568h@2x.png */; };
-		0F2801EB16F2DDE6005EEDEB /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801E816F2DDE6005EEDEB /* icon.png */; };
-		0F2801EC16F2DDE6005EEDEB /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801E916F2DDE6005EEDEB /* icon@2x.png */; };
 		0F33563916EF5DF100F8FB90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563816EF5DF100F8FB90 /* UIKit.framework */; };
 		0F33563B16EF5DF100F8FB90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563A16EF5DF100F8FB90 /* Foundation.framework */; };
 		0F33563D16EF5DF100F8FB90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563C16EF5DF100F8FB90 /* CoreGraphics.framework */; };
@@ -42,6 +39,10 @@
 		0F33568816EF77E700F8FB90 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33567C16EF77E700F8FB90 /* AFXMLRequestOperation.m */; };
 		0F33568916EF77E700F8FB90 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33567E16EF77E700F8FB90 /* UIImageView+AFNetworking.m */; };
 		0F33568A16EF77E700F8FB90 /* LFAFNetworkingInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F33568016EF77E700F8FB90 /* LFAFNetworkingInterface.m */; };
+		B562DB6C16F2E13500BDA5C5 /* LFReachabilityCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B562DB6916F2E13500BDA5C5 /* LFReachabilityCheck.m */; };
+		B562DB6D16F2E13500BDA5C5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B562DB6B16F2E13500BDA5C5 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B562DB7016F2E59F00BDA5C5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B562DB6E16F2E59F00BDA5C5 /* icon.png */; };
+		B562DB7116F2E59F00BDA5C5 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B562DB6F16F2E59F00BDA5C5 /* icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,9 +67,6 @@
 		0F2801C616F23A5C005EEDEB /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		0F2801C716F23A5C005EEDEB /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		0F2801CC16F23B4A005EEDEB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		0F2801E716F2DDE6005EEDEB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		0F2801E816F2DDE6005EEDEB /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		0F2801E916F2DDE6005EEDEB /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		0F33563516EF5DF100F8FB90 /* aLeagFrogTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aLeagFrogTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F33563816EF5DF100F8FB90 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0F33563A16EF5DF100F8FB90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -103,6 +101,12 @@
 		0F33568016EF77E700F8FB90 /* LFAFNetworkingInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFAFNetworkingInterface.m; sourceTree = "<group>"; };
 		0F33568B16EF78E900F8FB90 /* ParsingCompleteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsingCompleteProtocol.h; sourceTree = "<group>"; };
 		0F3356BE16EFE75200F8FB90 /* LFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFConstants.h; sourceTree = "<group>"; };
+		B562DB6816F2E13500BDA5C5 /* LFReachabilityCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFReachabilityCheck.h; sourceTree = "<group>"; };
+		B562DB6916F2E13500BDA5C5 /* LFReachabilityCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFReachabilityCheck.m; sourceTree = "<group>"; };
+		B562DB6A16F2E13500BDA5C5 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		B562DB6B16F2E13500BDA5C5 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		B562DB6E16F2E59F00BDA5C5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		B562DB6F16F2E59F00BDA5C5 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,12 +130,11 @@
 		0F2801A116F145F7005EEDEB /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				0F2801E716F2DDE6005EEDEB /* Default-568h@2x.png */,
-				0F2801E816F2DDE6005EEDEB /* icon.png */,
-				0F2801E916F2DDE6005EEDEB /* icon@2x.png */,
 				0F2801A216F145F8005EEDEB /* Default-568h@2x.png */,
 				0F2801A316F145F8005EEDEB /* Default.png */,
 				0F2801A416F145F8005EEDEB /* Default@2x.png */,
+				B562DB6E16F2E59F00BDA5C5 /* icon.png */,
+				B562DB6F16F2E59F00BDA5C5 /* icon@2x.png */,
 				0F2801A516F145F8005EEDEB /* loading.png */,
 				0F2801A616F145F8005EEDEB /* no_image.jpg */,
 			);
@@ -213,6 +216,7 @@
 		0F33563E16EF5DF100F8FB90 /* CollectionViewTest */ = {
 			isa = PBXGroup;
 			children = (
+				B562DB6716F2E13500BDA5C5 /* Reachability */,
 				0F2801A116F145F7005EEDEB /* Assets */,
 				0F2801B616F146C5005EEDEB /* Expanded View */,
 				0F33566A16EF77E700F8FB90 /* ImageDownloadHandling */,
@@ -273,6 +277,17 @@
 				0F33567E16EF77E700F8FB90 /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		B562DB6716F2E13500BDA5C5 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				B562DB6816F2E13500BDA5C5 /* LFReachabilityCheck.h */,
+				B562DB6916F2E13500BDA5C5 /* LFReachabilityCheck.m */,
+				B562DB6A16F2E13500BDA5C5 /* Reachability.h */,
+				B562DB6B16F2E13500BDA5C5 /* Reachability.m */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,9 +351,8 @@
 				0F2801BB16F166B7005EEDEB /* LFExpandedCellViewController.xib in Resources */,
 				0F2801C916F23A5C005EEDEB /* README.md in Resources */,
 				0F2801CA16F23A5C005EEDEB /* release_notes.md in Resources */,
-				0F2801EA16F2DDE6005EEDEB /* Default-568h@2x.png in Resources */,
-				0F2801EB16F2DDE6005EEDEB /* icon.png in Resources */,
-				0F2801EC16F2DDE6005EEDEB /* icon@2x.png in Resources */,
+				B562DB7016F2E59F00BDA5C5 /* icon.png in Resources */,
+				B562DB7116F2E59F00BDA5C5 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +378,8 @@
 				0F2801B016F14629005EEDEB /* LFPhotoCell.m in Sources */,
 				0F2801B516F14684005EEDEB /* LFCollectionViewController.m in Sources */,
 				0F2801B916F146C6005EEDEB /* LFExpandedCellViewController.m in Sources */,
+				B562DB6C16F2E13500BDA5C5 /* LFReachabilityCheck.m in Sources */,
+				B562DB6D16F2E13500BDA5C5 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
