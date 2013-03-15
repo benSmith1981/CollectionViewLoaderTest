@@ -22,9 +22,9 @@
 		0F2801CA16F23A5C005EEDEB /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801C616F23A5C005EEDEB /* release_notes.md */; };
 		0F2801CB16F23B2A005EEDEB /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2801C416F23A5C005EEDEB /* libTestFlight.a */; };
 		0F2801CD16F23B4B005EEDEB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2801CC16F23B4A005EEDEB /* libz.dylib */; };
-		0F2801DA16F2C5C3005EEDEB /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801D916F2C5C3005EEDEB /* icon.png */; };
-		0F2801DC16F2C5C8005EEDEB /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801DB16F2C5C7005EEDEB /* icon@2x.png */; };
-		0F2801DE16F2C6C9005EEDEB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801DD16F2C6C9005EEDEB /* Default-568h@2x.png */; };
+		0F2801EA16F2DDE6005EEDEB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801E716F2DDE6005EEDEB /* Default-568h@2x.png */; };
+		0F2801EB16F2DDE6005EEDEB /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801E816F2DDE6005EEDEB /* icon.png */; };
+		0F2801EC16F2DDE6005EEDEB /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2801E916F2DDE6005EEDEB /* icon@2x.png */; };
 		0F33563916EF5DF100F8FB90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563816EF5DF100F8FB90 /* UIKit.framework */; };
 		0F33563B16EF5DF100F8FB90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563A16EF5DF100F8FB90 /* Foundation.framework */; };
 		0F33563D16EF5DF100F8FB90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F33563C16EF5DF100F8FB90 /* CoreGraphics.framework */; };
@@ -66,9 +66,9 @@
 		0F2801C616F23A5C005EEDEB /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		0F2801C716F23A5C005EEDEB /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		0F2801CC16F23B4A005EEDEB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		0F2801D916F2C5C3005EEDEB /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		0F2801DB16F2C5C7005EEDEB /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
-		0F2801DD16F2C6C9005EEDEB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		0F2801E716F2DDE6005EEDEB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		0F2801E816F2DDE6005EEDEB /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		0F2801E916F2DDE6005EEDEB /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		0F33563516EF5DF100F8FB90 /* aLeagFrogTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aLeagFrogTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F33563816EF5DF100F8FB90 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0F33563A16EF5DF100F8FB90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -126,6 +126,9 @@
 		0F2801A116F145F7005EEDEB /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				0F2801E716F2DDE6005EEDEB /* Default-568h@2x.png */,
+				0F2801E816F2DDE6005EEDEB /* icon.png */,
+				0F2801E916F2DDE6005EEDEB /* icon@2x.png */,
 				0F2801A216F145F8005EEDEB /* Default-568h@2x.png */,
 				0F2801A316F145F8005EEDEB /* Default.png */,
 				0F2801A416F145F8005EEDEB /* Default@2x.png */,
@@ -179,9 +182,6 @@
 		0F33562C16EF5DF100F8FB90 = {
 			isa = PBXGroup;
 			children = (
-				0F2801DD16F2C6C9005EEDEB /* Default-568h@2x.png */,
-				0F2801DB16F2C5C7005EEDEB /* icon@2x.png */,
-				0F2801D916F2C5C3005EEDEB /* icon.png */,
 				0F33563E16EF5DF100F8FB90 /* CollectionViewTest */,
 				0F33563716EF5DF100F8FB90 /* Frameworks */,
 				0F33563616EF5DF100F8FB90 /* Products */,
@@ -336,9 +336,9 @@
 				0F2801BB16F166B7005EEDEB /* LFExpandedCellViewController.xib in Resources */,
 				0F2801C916F23A5C005EEDEB /* README.md in Resources */,
 				0F2801CA16F23A5C005EEDEB /* release_notes.md in Resources */,
-				0F2801DA16F2C5C3005EEDEB /* icon.png in Resources */,
-				0F2801DC16F2C5C8005EEDEB /* icon@2x.png in Resources */,
-				0F2801DE16F2C6C9005EEDEB /* Default-568h@2x.png in Resources */,
+				0F2801EA16F2DDE6005EEDEB /* Default-568h@2x.png in Resources */,
+				0F2801EB16F2DDE6005EEDEB /* icon.png in Resources */,
+				0F2801EC16F2DDE6005EEDEB /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
