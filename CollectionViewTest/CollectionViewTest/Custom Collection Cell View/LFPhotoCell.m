@@ -11,6 +11,7 @@
 #import "LFExpandedCellViewController.h"
 #import "LFAFNetworkingInterface.h"
 #import "LFConstants.h"
+#import "LFExpandedScrollView.h"
 
 /** Created a static ExpandedViewProtocol variable so can be set in the class method call*/
 static id<ExpandedViewProtocol>expandedDelegate;
@@ -126,14 +127,22 @@ static id<ExpandedViewProtocol>expandedDelegate;
             //save original frame value;
             _originalFrame = self.frame;
             
+//            //if not create it
+//            _expandedVC = [[LFExpandedCellViewController alloc]initWithFrame:self.frame
+//                                                            andWithImagePath:[[_imageURLsLocal objectAtIndex:_cellNumber] lastPathComponent]
+//                                                                andImageURLs:_imageURLsLocal
+//                                                              andCurrentCell:self];
+//            
+//            //call back to delegate collection view class with our newly created expanded view and the cells details
+//            [expandedDelegate expandTheImageView:_expandedVC];
             //if not create it
-            _expandedVC = [[LFExpandedCellViewController alloc]initWithFrame:self.frame
-                                                            andWithImagePath:[[_imageURLsLocal objectAtIndex:_cellNumber] lastPathComponent]
-                                                                andImageURLs:_imageURLsLocal
-                                                              andCurrentCell:self];
-            
+            LFExpandedScrollView *_LFExpandedScrollView = [[LFExpandedScrollView alloc]initWithFrame:self.frame
+                                                                                        andImageURLs:_imageURLsLocal
+                                                                                       andCellNumber:_cellNumber
+                                                                                      andCurrentCell:self];
             //call back to delegate collection view class with our newly created expanded view and the cells details
-            [expandedDelegate expandTheImageView:_expandedVC];
+            [expandedDelegate expandTheImageView:_LFExpandedScrollView];
+
         }
     }
     else //if doesn't reach this size keep scaling it

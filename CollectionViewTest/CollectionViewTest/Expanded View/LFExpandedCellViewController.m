@@ -21,7 +21,14 @@
 /** Has the closed animation been called, use a BOOL here as the closed animation can get called mutliple times as it is called from the scale method that is triggered by pinching*/
 @property (nonatomic)BOOL closedAnimationHasBeenCalled;
 
-@property (nonatomic,strong)UIScrollView* scrollView;
+/** This is the full size image that is displayed on in our expanded view*/
+@property (nonatomic,strong) IBOutlet UIImageView *fullsizeImage;
+
+/** This is the cell that the photo belongs to, used to get cell number */
+@property (nonatomic,strong) LFPhotoCell *currentPhotoCell;
+
+/** This is the array of image URLS so we can swipe between the images */
+@property (nonatomic,strong) NSArray *imageURLS;
 
 /**
  Action method called by the pinch gesture recogniser that Scales the views size, when scale reaches certain value the view closes
@@ -70,7 +77,6 @@
 @synthesize imageURLS = _imageURLS;
 @synthesize currentCellNumber = _currentCellNumber;
 @synthesize closedAnimationHasBeenCalled = _closedAnimationHasBeenCalled;
-@synthesize scrollView = _scrollView;
 
 - (id)initWithFrame:(CGRect)frame andWithImagePath:(NSString*)imagePath andImageURLs:(NSArray*)imageURLsParam andCurrentCell:(LFPhotoCell*)photoCell
 {
@@ -100,10 +106,6 @@
         
         //Hide everything on view intially
         [self hide:YES];
-        
-        _scrollView = [[LFExpandedScrollView alloc] initWithFrame:self.view.bounds andImageURLs:_imageURLS];
-        [self.view addSubview:_scrollView];
-
     }
     return self;
 }
@@ -113,7 +115,7 @@
     //Set current cell number to that of the cell that has been opened
     //create pinch and swipe gestures on this view so we can close it by pinching, and swipe to next image
     [self createPinchRecogniserForView];
-    //[self createSwipeGestureRecognisersForView];
+    [self createSwipeGestureRecognisersForView];
 }
 
 - (void)viewDidLoad {
