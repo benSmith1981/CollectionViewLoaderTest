@@ -1,10 +1,14 @@
-//
-//  ViewController.m
-//  CollectionViewTest
-//
-//  Created by Smith, Benjamin Terry on 3/12/13.
-//  Copyright (c) 2013 Ben Smith. All rights reserved.
-//
+/**
+ * LFCollectionViewController - This class is the view controller the collection view and lays out the LFPhotoCells (custom UICollectionViewCells)
+ * conforming the collection view delegates. It also triggers the data layer (through LFAFNetworkingInterface class) to start download of the JSON
+ * and images to display, then confoms to the ParsingCompleteProtocol that sends back a dictionary of URLs for the images, which are then
+ * subsequently requested to from the LFAFNetworkingInterface and displayed in each cell through CollectionViewDelegate method
+ * collectionView:cellForItemAtIndexPath:
+ *
+ * Created by Smith, Benjamin Terry on 3/12/13.
+ * Copyright (c) 2013 Ben Smith. All rights reserved.
+ *
+ */
 
 #import "LFCollectionViewController.h"
 #import "LFPhotoCell.h"
@@ -29,8 +33,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 @synthesize lfExpanded = _lfExpanded;
 @synthesize photoCell = _photoCell;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     //Register the cell with collection view
@@ -52,21 +55,18 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
     [LFAFNetworkingInterface jsonRequestInitialiser];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if ([_imageURLs count]) {
         return [_imageURLs count];
     }
@@ -74,8 +74,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
         return 0;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LFPhotoCell *photoCell  = [cv dequeueReusableCellWithReuseIdentifier:PhotoCellIdentifier forIndexPath:indexPath];
     
     //Set the custom cells cell number
@@ -95,8 +94,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
     return photoCell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     LFPhotoCell *photoCell  = [collectionView dequeueReusableCellWithReuseIdentifier:PhotoCellIdentifier forIndexPath:indexPath];
     
     //set the photo cells number for access later by the expanded view
@@ -120,8 +118,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 }
 
 #pragma mark ImageParsingComplete Protocol method
-- (void) sendBackArrayOfImageURLs:(NSArray*)imageURLs;
-{
+- (void) sendBackArrayOfImageURLs:(NSArray*)imageURLs; {
     //initialise imageURLS array with list of URLS returned from JSON parser
     _imageURLs = [[NSArray alloc]initWithArray:imageURLs];
     [self.collectionView reloadData];
@@ -143,8 +140,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 
 #pragma mark - ExpandedViewProtocol, expands the view from the collection view cell
 
--(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC
-{
+-(void)expandTheImageView:(LFExpandedCellViewController*)expandedVC {
     // set instance variables so view can be removed in expandedViewControlledClosed, and the _expandedVC created inside cell can also be set to nil
     _lfExpanded = expandedVC;
     
@@ -160,8 +156,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 
 #pragma mark - CloseExpandedViewProtocol, closes the expanded view and sets to nil
 
--(void)expandedViewControlledClosed
-{
+-(void)expandedViewControlledClosed {
     //clear up the expanded view
     [_lfExpanded.view removeFromSuperview];
     [_lfExpanded removeFromParentViewController];

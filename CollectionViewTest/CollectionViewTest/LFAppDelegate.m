@@ -6,23 +6,29 @@
 //  Copyright (c) 2013 Ben Smith. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "LFAppDelegate.h"
 
 #import "LFCollectionViewController.h"
 #import "TestFlight.h"
 #import "LFReachabilityCheck.h"
 #import "LFAFNetworkingInterface.h"
 
-@implementation AppDelegate
+@implementation LFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //Setup our testflight token so we can push builds to testflight
     [TestFlight takeOff:@"59767a0b-3c07-4d05-b07d-0812d3cf7019"];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    //Create our LFCollectionViewController intialising with the UICollectionViewFlowLayout so the cells flow nicely in and ordered way across the view
     self.viewController = [[LFCollectionViewController alloc] initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
+    
+    //Set the root window to that of UIScreen mainScreen bounds so that even on different sized screens (such as iphone 5) the main screen and all subsequent view controllers will also scale to this size
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    //set root window to that of our LFCollectionViewController
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
@@ -42,12 +48,10 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    //reset the AskedAboutConnection so if the internet is off we can ask user to retry connecting
+    //Reset the AskedAboutConnection BOOL so if the internet is off we can ask user to retry connecting, if we don't reset this static method then the user will never be asked to retry downloading if they had cancelled trying to download, then backgrounded the app to sort out the connection and then brought it back
     [LFReachabilityCheck setAskedAboutConnection:NO];
     
-    //set off JSON request incase this failed due to poor connection or we need to reload images if JSON has been added to
+    //Set off JSON request incase this failed due to poor connection or we need to reload images if JSON has been added to
     [LFAFNetworkingInterface jsonRequestInitialiser];
 }
 

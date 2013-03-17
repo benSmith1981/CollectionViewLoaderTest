@@ -1,10 +1,10 @@
-//
-//  LFReachabilityCheck.m
-//  CollectionViewLoaderTest
-//
-//  Created by Ben on 24/02/2013.
-//  Copyright (c) 2013 Ben. All rights reserved.
-//
+/**
+ * LFReachabilityCheck - This is a class that wraps the Apple Reachability class to check if the device is connected (called when there is a problem downloading the images or JSON) to the internet and then alert the user allowing them a chance to retry once connection has resumed.
+ *
+ * Created by Smith, Benjamin Terry on 3/14/13.
+ * Copyright (c) 2013 Ben Smith. All rights reserved.
+ *
+ */
 
 #import "LFReachabilityCheck.h"
 #import "Reachability.h"

@@ -1,10 +1,10 @@
-//
-//  LFPhotoCell.m
-//  CollectionViewTest
-//
-//  Created by Smith, Benjamin Terry on 3/12/13.
-//  Copyright (c) 2013 Ben Smith. All rights reserved.
-//
+/**
+ * LFPhotoCell - This is a custom CollectionViewCell setup so the properties of each cell can be adjusted however. The photos are made to aspect fit to each cell for example and a pinchgesture recogniser is added to the cells so that when the cells are flicked they expanded
+ *
+ * Created by Smith, Benjamin Terry on 3/12/13.
+ * Copyright (c) 2013 Ben Smith. All rights reserved.
+ *
+ */
 
 #import "LFPhotoCell.h"
 #import <QuartzCore/QuartzCore.h>
@@ -13,7 +13,7 @@
 #import "LFConstants.h"
 
 /** Created a static ExpandedViewProtocol variable so can be set in the class method call*/
-static id<ExpandedViewProtocol>expandedDelegate;
+static id<LFExpandedViewProtocol>expandedDelegate;
 
 @interface LFPhotoCell ()
 /** Private instance variable to hold the last scale factor so we know what to scale the view to*/
@@ -40,8 +40,7 @@ static id<ExpandedViewProtocol>expandedDelegate;
 @synthesize imageURLsLocal = _imageURLsLocal;
 @synthesize originalFrame = _originalFrame;
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self)
     {
@@ -72,19 +71,18 @@ static id<ExpandedViewProtocol>expandedDelegate;
     [self setNeedsDisplay]; // force drawRect:
 }
 
-- (void)prepareForReuse
-{
+- (void)prepareForReuse {
     [super prepareForReuse];
     self.cellImageView.image = nil;
 }
 
--(void)createPinchRecogniserForView{
+-(void)createPinchRecogniserForView {
     UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scale:)];
     [pinchRecognizer setDelegate:self];
     [self addGestureRecognizer:pinchRecognizer];
 }
 
--(void)scale:(id)sender{
+-(void)scale:(id)sender {
     //bring cell to front, above all other cells
     [_collectionVC.view bringSubviewToFront:self.cellImageView];
     CGFloat scale = 0;
@@ -148,8 +146,7 @@ static id<ExpandedViewProtocol>expandedDelegate;
 
 }
 
-+ (void)setExpandedViewProtocol:(id<ExpandedViewProtocol>)delegate
-{
++ (void)setExpandedViewProtocol:(id<LFExpandedViewProtocol>)delegate {
     expandedDelegate = delegate;
 }
 

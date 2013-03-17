@@ -1,13 +1,13 @@
-//
-//  LFPhotoCell.h
-//  CollectionViewTest
-//
-//  Created by Smith, Benjamin Terry on 3/12/13.
-//  Copyright (c) 2013 Ben Smith. All rights reserved.
-//
+/**
+ * LFPhotoCell - This is a custom CollectionViewCell setup so the properties of each cell can be adjusted however. The photos are made to aspect fit to each cell for example and a pinchgesture recogniser is added to the cells so that when the cells are flicked they expanded
+ *
+ * Created by Smith, Benjamin Terry on 3/12/13.
+ * Copyright (c) 2013 Ben Smith. All rights reserved.
+ *
+ */
 
 #import <UIKit/UIKit.h>
-#import "ExpandedViewProtocol.h"
+#import "LFExpandedViewProtocol.h"
 #import "LFCollectionViewController.h"
 #import "LFExpandedCellViewController.h"
 
@@ -35,6 +35,6 @@
 
 /**Class method to set the ExpandedViewProtocol meaning we can set our delegate call back more simply
  */ 
-+ (void)setExpandedViewProtocol:(id<ExpandedViewProtocol>)delegate;
++ (void)setExpandedViewProtocol:(id<LFExpandedViewProtocol>)delegate;
 
 @end

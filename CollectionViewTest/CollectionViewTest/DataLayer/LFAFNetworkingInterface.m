@@ -1,9 +1,10 @@
-//
-//  MGImageDownloadHandler.m
-//  MGTest
-//
-//  Created by Ben on 23/02/2013.
-//
+/**
+ * LFAFNetworkingInterface - This interface is used to wrap the AFNetworking interface to provide a set of methods that can be called through this to download and parse a JSON file, get images from a specific URL, write the images to the documents directory and then retrieve them when necessary. This is used mainly by the LFCollectionViewController and also by the the LFExpandedViewController when swiping between images. LFAppdelegate also uses this when the App comes back from background and checks to see if the images need to be re-downloaded incase the connection was lost.
+ *
+ * Created by Smith, Benjamin Terry on 3/12/13.
+ * Copyright (c) 2013 Ben Smith. All rights reserved.
+ *
+ */
 
 #import "AFJSONRequestOperation.h"
 #import "LFConstants.h"
@@ -11,7 +12,7 @@
 #import "LFAFNetworkingInterface.h"
 #import "LFReachabilityCheck.h"
 
-static id<ParsingCompleteProtocol>parsingDelegate;
+static id<LFParsingCompleteProtocol>parsingDelegate;
 
 @interface LFAFNetworkingInterface ()
 //static NSArray *imageURLsStatic;
@@ -79,7 +80,7 @@ static id<ParsingCompleteProtocol>parsingDelegate;
                                  }];
 }
 
-+ (void)setImageManifestProtocol:(id<ParsingCompleteProtocol>)delegate
++ (void)setImageManifestProtocol:(id<LFParsingCompleteProtocol>)delegate
 {
     parsingDelegate = delegate;
 }
