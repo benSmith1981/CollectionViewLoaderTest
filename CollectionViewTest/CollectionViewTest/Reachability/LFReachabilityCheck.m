@@ -52,6 +52,11 @@ static BOOL askedAboutConnection = NO;
 	}
 }
 
++ (void) setAskedAboutConnection:(BOOL)asked{
+    askedAboutConnection = asked;
+}
+
+#pragma mark - UIAlertViewDelegate method
 + (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1)
@@ -67,7 +72,4 @@ static BOOL askedAboutConnection = NO;
     }
 }
 
-+ (void) setAskedAboutConnection:(BOOL)asked{
-    askedAboutConnection = asked;
-}
 @end

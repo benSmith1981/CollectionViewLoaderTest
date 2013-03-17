@@ -11,6 +11,7 @@
 #import "AFNetworking.h"
 #import "LFAFNetworkingInterface.h"
 #import "LFReachabilityCheck.h"
+#import "LFConstants.h"
 
 static id<LFParsingCompleteProtocol>parsingDelegate;
 
@@ -44,10 +45,32 @@ static id<LFParsingCompleteProtocol>parsingDelegate;
                                              NSArray *images = [temp objectForKey:@"images"];
                                              //Call to send back Image URLS array to delegate
                                              [parsingDelegate sendBackArrayOfImageURLs:images];
+                                             
                                          }
                                          failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                             
+                                             //check validity of JSON before attempting to Parse it
+                                             BOOL valid = [NSJSONSerialization isValidJSONObject:JSON];
+                                             
+                                             //print error to console
                                              NSLog(@"Request Failed with Error: %@, %@", error, error.userInfo);
+
+                                             if (valid) {
+                                             //perform a reachability check if the JSON is actually valid, and present user with options
                                              [LFReachabilityCheck checkInternet];
+                                                 
+                                             }
+                                             else
+                                             {
+                                                 //if the json is invalid display user a UIAlertView message, and close app when they press button
+                                                 UIAlertView *alert = nil;
+                                                 alert = [[UIAlertView alloc] initWithTitle:@"Invalid JSON"
+                                                                                    message:@"Sorry the JSON manifest used to download images is corrupted, we cannot get the images, please contact the vendor at benjaminsmith1981@gmail.com"
+                                                                                   delegate:self
+                                                                          cancelButtonTitle:@"Close App"
+                                                                          otherButtonTitles:nil, nil];
+                                                 [alert show];
+                                             }
                                          }];
     [operation start];
 }
@@ -76,7 +99,22 @@ static id<LFParsingCompleteProtocol>parsingDelegate;
                                  {
                                      //if retrieval fails print error description
                                      NSLog(@"%@",error.description);
-                                     [LFReachabilityCheck checkInternet];
+                                     
+                                     //Something went wrong getting the image, it wasn't there so a placeholder (no image) is shown instead
+                                     weakCell.cellImageView.image = [UIImage imageNamed:@"no_image.jpg"];
+                                     
+                                     //check to see if it was an internet problem
+                                     if ([LFReachabilityCheck checkInternet]) {
+                                         
+                                         //if it isn't an internet issue tell the user one image could not be retrieved
+                                         UIAlertView *alert = nil;
+                                         alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Image %@ could not be downloaded",[[imageURLs objectAtIndex:row]lastPathComponent]]
+                                                                            message:@"An image seems to be missing, please contact the vendor at benjaminsmith1981@gmail.com"
+                                                                           delegate:nil
+                                                                  cancelButtonTitle:@"OK"
+                                                                  otherButtonTitles:nil, nil];
+                                         [alert show];
+                                     }
                                  }];
 }
 
@@ -137,6 +175,16 @@ static id<LFParsingCompleteProtocol>parsingDelegate;
         image = [UIImage imageNamed:@"no_image.jpg"];
     }
     return image;
+}
+
+#pragma mark - UIAlertViewDelegate method
++ (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //concatenate message to show future developer in console 
+    NSString *message = [NSString stringWithFormat:@"The JSON file at %@ is invalid, please check this file",imageManifestJSON];
+    
+    //If we get here then the app must throw an assertion and crash
+    NSAssert(NO,message);
 }
 
 @end

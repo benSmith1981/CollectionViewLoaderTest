@@ -13,7 +13,7 @@
 @protocol LFParsingCompleteProtocol;
 /** Created static instance so that this class can be statically called*/
 
-@interface LFAFNetworkingInterface : AFImageRequestOperation
+@interface LFAFNetworkingInterface : AFImageRequestOperation <UIAlertViewDelegate>
 
 /** Sends off a request to Af networking to get and parse the JSON data from image manifest, which is sent back through a delegate call
  */
