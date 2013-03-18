@@ -100,16 +100,15 @@ static id<LFParsingCompleteProtocol>parsingDelegate;
                                      //if retrieval fails print error description
                                      NSLog(@"%@",error.description);
                                      
-                                     //Something went wrong getting the image, it wasn't there so a placeholder (no image) is shown instead
-                                     weakCell.cellImageView.image = [UIImage imageNamed:@"no_image.jpg"];
-                                     
-                                     //check to see if it was an internet problem
-                                     if ([LFReachabilityCheck checkInternet]) {
+                                     weakCell.cellImageView.image = [self getSavedImageWithName:[[imageURLs objectAtIndex:row]lastPathComponent]];
+
+                                     //Check to see if it was an internet problem or if the file already exists in documents, it may have just disappeared from server temporarily
+                                     if ([LFReachabilityCheck checkInternet] && ![self doesImageExist:[[imageURLs objectAtIndex:row]lastPathComponent]]) {
                                          
                                          //if it isn't an internet issue tell the user one image could not be retrieved
                                          UIAlertView *alert = nil;
                                          alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Image %@ could not be downloaded",[[imageURLs objectAtIndex:row]lastPathComponent]]
-                                                                            message:@"An image seems to be missing, please contact the vendor at benjaminsmith1981@gmail.com"
+                                                                            message:@"An image seems to be missing from the server, please contact the vendor at benjaminsmith1981@gmail.com"
                                                                            delegate:nil
                                                                   cancelButtonTitle:@"OK"
                                                                   otherButtonTitles:nil, nil];
