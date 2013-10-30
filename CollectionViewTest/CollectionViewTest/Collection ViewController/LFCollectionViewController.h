@@ -14,10 +14,13 @@
 #import "LFParsingCompleteProtocol.h"
 #import "LFExpandedViewProtocol.h"
 #import "LFCloseExpandedViewProtocol.h"
+#import "LFCustomLayout.h"
 
-@interface LFCollectionViewController : UICollectionViewController <UIGestureRecognizerDelegate,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,LFParsingCompleteProtocol,LFCloseExpandedViewProtocol,LFExpandedViewProtocol>
+@interface LFCollectionViewController : UIViewController <UIGestureRecognizerDelegate,UICollectionViewDataSource, UICollectionViewDelegate,LFParsingCompleteProtocol,LFCloseExpandedViewProtocol,LFExpandedViewProtocol>
+- (IBAction)changeLayout:(id)sender;
 
 /** Array of image urls returned from our JSON parser*/
 @property (nonatomic,strong) NSArray* imageURLs;
+@property (weak, nonatomic) IBOutlet UICollectionView *LFCollectionView;
 
 @end

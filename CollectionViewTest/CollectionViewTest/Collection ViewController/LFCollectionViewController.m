@@ -17,10 +17,22 @@
 #import "LFConstants.h"
 #import "LFExpandedCellViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "LFCustomLayout.h"
+#import "CVCLRevolverLayout.h"
+#import "CVCLCoverFlowLayout.h"
+#import "CVCLHomeIconLayout.h"
+#import "CVCLStickyHeaderFlowLayout.h"
 
-static NSString * const PhotoCellIdentifier = @"PhotoCell";
+
+static NSString * const PhotoCellIdentifier = @"LFPhotoCell";
 
 @interface LFCollectionViewController ()
+{
+    UICollectionViewLayout *customLayout;
+    NSArray *layouts;
+    int layoutCounter;
+
+}
 /** The collection view cell, we have a local copy so that we can reset the expanded view inside of it */
 @property (nonatomic,strong) LFPhotoCell* photoCell;
 
@@ -32,12 +44,14 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 @synthesize imageURLs = _imageURLs;
 @synthesize lfExpanded = _lfExpanded;
 @synthesize photoCell = _photoCell;
-
+@synthesize LFCollectionView = _LFCollectionView;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    layoutCounter = 0;
+    layouts = [[NSArray alloc]initWithObjects:[[CVCLRevolverLayout alloc] init],[[CVCLHomeIconLayout alloc] init],[[CVCLCoverFlowLayout alloc] init],[[UICollectionViewFlowLayout alloc] init],nil];
     
     //Register the cell with collection view
-    [self.collectionView registerClass:[LFPhotoCell class] forCellWithReuseIdentifier:PhotoCellIdentifier];
+    [_LFCollectionView registerClass:[LFPhotoCell class] forCellWithReuseIdentifier:PhotoCellIdentifier];
     
     //sets this class up to receive delegate call back when JSON is parsed
     [LFAFNetworkingInterface setImageManifestProtocol:self];
@@ -53,6 +67,8 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
     
     //sets off AF networking to parse JSON
     [LFAFNetworkingInterface jsonRequestInitialiser];
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,7 +97,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
     photoCell.cellNumber = indexPath.item;
     
     //Let custom cell have access to this collection view so a cell can be brought to front when pinched
-    photoCell.collectionVC = self;
+    photoCell.collectionVC = _LFCollectionView;
 
     //set image urls
     photoCell.imageURLsLocal = _imageURLs;
@@ -92,6 +108,7 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
                                    withImageURLS:_imageURLs];
     
     return photoCell;
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -121,7 +138,8 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
 - (void) sendBackArrayOfImageURLs:(NSArray*)imageURLs; {
     //initialise imageURLS array with list of URLS returned from JSON parser
     _imageURLs = [[NSArray alloc]initWithArray:imageURLs];
-    [self.collectionView reloadData];
+    
+    [_LFCollectionView reloadData];
 }
 
 #pragma mark Collection View Layout
@@ -164,4 +182,18 @@ static NSString * const PhotoCellIdentifier = @"PhotoCell";
     _lfExpanded = nil;
 }
 
+- (IBAction)changeLayout:(id)sender {
+    
+    if (layoutCounter >= [ layouts count]) {
+        layoutCounter = 0;
+    }
+    customLayout = [layouts objectAtIndex:layoutCounter];
+    [_LFCollectionView setCollectionViewLayout:customLayout animated:YES];
+    layoutCounter++;
+    // scroll to the first visible cell
+    if ( 0 < self.LFCollectionView.indexPathsForVisibleItems.count ) {
+        NSIndexPath *firstVisibleIdx = [[self.LFCollectionView indexPathsForVisibleItems] objectAtIndex:0];
+        [self.LFCollectionView scrollToItemAtIndexPath:firstVisibleIdx atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+    }
+}
 @end

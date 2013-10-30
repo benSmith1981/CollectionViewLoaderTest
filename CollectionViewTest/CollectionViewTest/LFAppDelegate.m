@@ -23,7 +23,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     //Create our LFCollectionViewController intialising with the UICollectionViewFlowLayout so the cells flow nicely in and ordered way across the view
-    self.viewController = [[LFCollectionViewController alloc] initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
+    self.viewController = [[LFCollectionViewController alloc] initWithNibName:@"LFCollectionViewController" bundle:nil];
     
     //Set the root window to that of UIScreen mainScreen bounds so that even on different sized screens (such as iphone 5) the main screen and all subsequent view controllers will also scale to this size
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

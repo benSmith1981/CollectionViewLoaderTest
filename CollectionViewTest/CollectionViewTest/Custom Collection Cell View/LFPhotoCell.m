@@ -84,7 +84,7 @@ static id<LFExpandedViewProtocol>expandedDelegate;
 
 -(void)scale:(id)sender {
     //bring cell to front, above all other cells
-    [_collectionVC.view bringSubviewToFront:self.cellImageView];
+    [_collectionVC bringSubviewToFront:self.cellImageView];
     CGFloat scale = 0;
     
     //if we have begun pinching

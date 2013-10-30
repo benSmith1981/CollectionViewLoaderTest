@@ -25,7 +25,7 @@
 @property (nonatomic, strong, readwrite) UIImageView *cellImageView;
 
 /** Access to the collectionVC so we can bring current cell being pinched to the front*/
-@property (nonatomic, strong)UICollectionViewController* collectionVC;
+@property (nonatomic, strong)UICollectionView* collectionVC;
 
 /** Local copy of image urls*/
 @property (nonatomic) NSArray *imageURLsLocal;

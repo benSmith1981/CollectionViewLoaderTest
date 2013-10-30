@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) LFCollectionViewController *viewController;
+@property (strong, nonatomic) UIViewController *viewController;
+
+
 
 @end
